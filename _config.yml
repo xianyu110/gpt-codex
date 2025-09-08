@@ -1,0 +1,62 @@
+# GitHub Pages 配置
+title: "CodeX 教程 - 国内最实用的 AI 编程助手指南"
+description: "CodeX 接入 GPT-5，平替 Claude Code，国内成功跑通教程，一个月仅需80元，无需魔法"
+url: "https://xianyu110.github.io"
+baseurl: "/gpt-codex"
+
+# 网站基本信息
+author: "CodeX 中文社区"
+email: "contact@codex-tutorial.com"
+
+# 插件配置
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+
+# 集合配置
+collections:
+  tutorials:
+    output: true
+    permalink: /tutorials/:name/
+
+# 排除文件
+exclude:
+  - vendor/
+  - .bundle/
+  - .sass-cache/
+  - .jekyll-cache/
+  - gemfiles/
+  - Gemfile.lock
+  - README.md
+
+# 包含文件
+include:
+  - _pages
+
+# 网站设置
+markdown: kramdown
+highlighter: rouge
+
+# 压缩配置
+compress_html:
+  clippings: all
+  comments: all
+  endings: all
+  startings: all
+
+# SEO 优化
+social:
+  name: CodeX 教程
+  links:
+    - https://github.com/xianyu110/gpt-codex
+
+# 网站图标
+favicon: "/favicon.ico"
+
+# 主题设置
+theme: minima
+minima:
+  skin: auto
+  social_links:
+    github: xianyu110/gpt-codex
+    twitter: codex_tutorial
