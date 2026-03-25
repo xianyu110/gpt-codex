@@ -1,501 +1,921 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>是时候转CodeX了！Codex 接入 GPT-5，平替 Claude Code</title>
-    <meta name="description" content="Codex 国内成功跑通教程，平替 Claude Code，接入 GPT-5，价格实惠，易于使用">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        .gradient-bg {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-        .hero-pattern {
-            background-image: radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 0%, transparent 50%),
-                              radial-gradient(circle at 75% 75%, rgba(255,255,255,0.1) 0%, transparent 50%);
-        }
-        .code-block {
-            background: #1f2937;
-            border-radius: 8px;
-            padding: 1rem;
-            overflow-x: auto;
-        }
-        .code-block code {
-            color: #e5e7eb;
-            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-        }
-        .highlight {
-            background: linear-gradient(135deg, #10b981, #059669);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .card-hover {
-            transition: all 0.3s ease;
-        }
-        .card-hover:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        }
-        .scroll-animation {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.6s ease;
-        }
-        .scroll-animation.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Codex 入门教程 | 像素风指南</title>
+  <meta name="description" content="根据 README 重构的 Codex 入门教程首页，包含获取方式、核心概念、功能配置、Plan 模式与快速参考卡。">
+  <style>
+    :root {
+      --bg: #120f1d;
+      --panel: #221c35;
+      --panel-2: #2c2445;
+      --text: #f7f3e9;
+      --muted: #c8bfdc;
+      --cyan: #62f3ff;
+      --pink: #ff6bd6;
+      --yellow: #ffd84d;
+      --green: #7dff8a;
+      --red: #ff7c7c;
+      --border: #0a0812;
+      --shadow: 0 0 0 4px var(--border);
+      --grid: rgba(255, 255, 255, 0.06);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: "Courier New", "Monaco", monospace;
+      color: var(--text);
+      background:
+        linear-gradient(var(--grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid) 1px, transparent 1px),
+        linear-gradient(180deg, #0d0a15 0%, #120f1d 100%);
+      background-size: 24px 24px, 24px 24px, auto;
+      line-height: 1.65;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .pixel-box {
+      background: var(--panel);
+      border: 4px solid var(--border);
+      box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.35);
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(18, 15, 29, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 4px solid var(--border);
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 0;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .brand-badge,
+    .mini-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 42px;
+      height: 42px;
+      padding: 0 10px;
+      background: var(--yellow);
+      color: #241300;
+      border: 4px solid var(--border);
+      box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
+      text-transform: uppercase;
+    }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    .nav a,
+    .button,
+    .chip {
+      padding: 8px 12px;
+      border: 4px solid var(--border);
+      background: var(--panel-2);
+      box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.25);
+      transition: transform 0.15s ease;
+    }
+
+    .nav a:hover,
+    .button:hover,
+    .chip:hover { transform: translate(-2px, -2px); }
+
+    .button-primary { background: var(--cyan); color: #03131a; }
+    .button-secondary { background: var(--pink); color: #23061d; }
+    .chip { display: inline-block; padding: 4px 10px; }
+    .chip-green { background: var(--green); color: #0e240f; }
+    .chip-yellow { background: var(--yellow); color: #2a1b00; }
+    .chip-pink { background: var(--pink); color: #29081e; }
+
+    .hero {
+      padding: 56px 0 36px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.9fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .hero-main,
+    .hero-side { padding: 28px; }
+
+    h1, h2, h3, h4, p { margin-top: 0; }
+
+    h1 {
+      font-size: clamp(32px, 5vw, 64px);
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+
+    h2 {
+      font-size: clamp(24px, 3.6vw, 40px);
+      margin-bottom: 14px;
+    }
+
+    h3 {
+      font-size: 22px;
+      margin-bottom: 14px;
+    }
+
+    .lead {
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 720px;
+    }
+
+    .accent-cyan { color: var(--cyan); }
+    .accent-pink { color: var(--pink); }
+    .accent-yellow { color: var(--yellow); }
+    .accent-green { color: var(--green); }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .stats,
+    .grid-2,
+    .grid-3,
+    .grid-4,
+    .compare-grid,
+    .footer-grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .stats { grid-template-columns: repeat(3, 1fr); margin-top: 22px; }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-4 { grid-template-columns: repeat(4, 1fr); }
+    .compare-grid { grid-template-columns: 1fr 1fr; }
+    .footer-grid { grid-template-columns: 1.2fr 0.9fr 0.9fr; }
+
+    .stat,
+    .card,
+    .step,
+    .command,
+    .footer-card,
+    .timeline-item,
+    .compare-card,
+    .tip,
+    .table-wrap,
+    .quote {
+      padding: 20px;
+    }
+
+    .stat strong,
+    .big-number {
+      display: block;
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .section {
+      padding: 32px 0;
+    }
+
+    .section-title {
+      margin-bottom: 20px;
+    }
+
+    .muted { color: var(--muted); }
+
+    ul.pixel-list {
+      padding-left: 20px;
+      margin: 0;
+    }
+
+    ul.pixel-list li { margin-bottom: 8px; }
+
+    .step-index,
+    .tiny-tag {
+      display: inline-block;
+      padding: 4px 10px;
+      margin-bottom: 12px;
+      border: 4px solid var(--border);
+      background: var(--yellow);
+      color: #241300;
+      box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.25);
+    }
+
+    .tiny-tag { background: var(--cyan); color: #06181a; }
+
+    .code {
+      padding: 14px;
+      border: 4px solid var(--border);
+      background: #130f21;
+      color: var(--green);
+      white-space: pre-wrap;
+      word-break: break-word;
+      box-shadow: inset 0 0 0 2px rgba(255,255,255,0.05);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 720px;
+    }
+
+    th, td {
+      padding: 14px;
+      border: 4px solid var(--border);
+      text-align: left;
+      background: var(--panel);
+      vertical-align: top;
+    }
+
+    th {
+      background: var(--panel-2);
+      color: var(--yellow);
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 16px;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 72px;
+    }
+
+    .timeline-item::before {
+      content: attr(data-step);
+      position: absolute;
+      left: 20px;
+      top: 20px;
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      background: var(--pink);
+      color: #240818;
+      border: 4px solid var(--border);
+      box-shadow: 4px 4px 0 rgba(0,0,0,0.25);
+      font-weight: 700;
+    }
+
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .image-grid.image-grid-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .image-card {
+      padding: 12px;
+      background: #1a1528;
+    }
+
+    .image-card img {
+      width: 100%;
+      border: 4px solid var(--border);
+      box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.25);
+      background: #000;
+    }
+
+    .image-card p {
+      margin: 10px 0 0;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .link-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .blue-link {
+      color: #7cc7ff;
+      text-decoration: underline;
+      word-break: break-all;
+    }
+
+    .blue-link:hover {
+      color: #a8dbff;
+    }
+
+    .footer {
+      padding: 32px 0 48px;
+    }
+
+    .footer small { color: var(--muted); }
+
+    @media (max-width: 960px) {
+      .hero-grid,
+      .grid-2,
+      .grid-3,
+      .grid-4,
+      .stats,
+      .compare-grid,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav { justify-content: flex-start; }
+    }
+  </style>
 </head>
-<body class="bg-gray-50">
-    <!-- 导航栏 -->
-    <nav class="bg-white shadow-lg sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0">
-                        <h1 class="text-2xl font-bold highlight">CodeX 教程</h1>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-4">
-                    <a href="#intro" class="text-gray-700 hover:text-green-600 transition-colors">简介</a>
-                    <a href="#tutorial" class="text-gray-700 hover:text-green-600 transition-colors">教程</a>
-                    <a href="#comparison" class="text-gray-700 hover:text-green-600 transition-colors">对比</a>
-                    <a href="#conclusion" class="text-gray-700 hover:text-green-600 transition-colors">总结</a>
-                </div>
-            </div>
-        </div>
-    </nav>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">
+        <span class="brand-badge">CODEx</span>
+        <span>全网最详细的 Codex 入门教程</span>
+      </div>
+      <nav class="nav">
+        <a href="#overview">概览</a>
+        <a href="#get">获取方式</a>
+        <a href="#concepts">核心概念</a>
+        <a href="#features">功能配置</a>
+        <a href="#workflow">使用方法</a>
+        <a href="#summary">总结</a>
+      </nav>
+    </div>
+  </header>
 
-    <!-- Hero Section -->
-    <section class="gradient-bg hero-pattern text-white py-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div class="scroll-animation">
-                <h1 class="text-5xl md:text-6xl font-bold mb-6">
-                    是时候转<span class="highlight">CodeX</span>了！
-                </h1>
-                <p class="text-xl md:text-2xl mb-8 opacity-90">
-                    Codex 接入 GPT-5，平替 Claude Code
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                    <a href="#tutorial" class="bg-green-500 hover:bg-green-600 text-white px-8 py-3 rounded-lg font-semibold transition-colors transform hover:scale-105">
-                        <i class="fas fa-rocket mr-2"></i>开始使用
-                    </a>
-                    <a href="https://github.com/xianyu110/gpt-codex" target="_blank" class="bg-white bg-opacity-20 hover:bg-opacity-30 text-white px-8 py-3 rounded-lg font-semibold transition-colors border border-white border-opacity-30">
-                        <i class="fab fa-github mr-2"></i>查看源码
-                    </a>
+  <main>
+    <section class="hero" id="overview">
+      <div class="container hero-grid">
+        <div class="hero-main pixel-box">
+          <span class="chip chip-yellow">2026-03 最新整理</span>
+          <h1>Codex 入门教程</h1>
+          <p class="muted">更新时间：2026-03 ｜ 作者：MaynorAI</p>
+          <p class="lead">内容简介：这版首页基于 README 重组，重点覆盖 Codex 的定位、获取方式、核心概念、功能配置和使用流程，帮助你快速建立对 Thread、Plan、Skills 等机制的整体理解。</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#get">立即查看获取方式</a>
+            <a class="button button-secondary" href="#workflow">开始上手</a>
+            <a class="button" href="#quickref">查看速查卡</a>
+          </div>
+
+          <div class="card pixel-box" style="margin-top: 22px; background: #2f1f12;">
+            <span class="chip chip-yellow">重点</span>
+            <h3 style="margin-top: 14px;">如何获取 Codex</h3>
+            <div class="grid-2">
+              <div>
+                <p><strong class="accent-yellow">方式一：官网订阅</strong></p>
+                <p class="muted">codex 20刀充值链接（自备魔法）</p>
+                <div class="link-list">
+                  <a class="blue-link" href="https://maynorai.tqfk.xyz/item/10" target="_blank" rel="noopener noreferrer">官网订阅</a>
                 </div>
+              </div>
+              <div>
+                <p><strong class="accent-cyan">方式二：安装 cc-switch</strong></p>
+                <ul class="pixel-list muted">
+                  <li><a class="blue-link" href="https://github.com/farion1231/cc-switch/releases/" target="_blank" rel="noopener noreferrer">下载安装</a></li>
+                  <li><a class="blue-link" href="https://maynorai.tqfk.xyz/item/15" target="_blank" rel="noopener noreferrer">配置中转</a></li>
+                  <li><a class="blue-link" href="https://ai.feishu.cn/wiki/JnefwEQRKiNyg6kTnN4cNphnnSh?from=from_copylink" target="_blank" rel="noopener noreferrer">配置教程</a></li>
+                </ul>
+              </div>
             </div>
+          </div>
+
+          <div class="stats">
+            <div class="stat pixel-box">
+              <strong class="accent-green">GPT-5.3-codex</strong>
+              <span class="muted">README 中强调的 Codex 核心编程模型</span>
+            </div>
+            <div class="stat pixel-box">
+              <strong class="accent-yellow">2 层结构</strong>
+              <span class="muted">工作区文件夹 + Thread 任务线，降低上下文污染</span>
+            </div>
+            <div class="stat pixel-box">
+              <strong class="accent-cyan">Plan + Skills</strong>
+              <span class="muted">先规划、再开发，复杂项目更稳</span>
+            </div>
+          </div>
         </div>
+
+        <aside class="hero-side pixel-box">
+          <h3>README 提炼</h3>
+          <div class="timeline">
+            <div class="timeline-item pixel-box" data-step="1">
+              <strong>定位</strong>
+              <div class="muted">Codex 是 OpenAI 面向编程场景的 Agent 产品，对标 Claude Code。</div>
+            </div>
+            <div class="timeline-item pixel-box" data-step="2">
+              <strong>核心价值</strong>
+              <div class="muted">把“写代码”扩展成通用任务执行能力，线程化管理让项目更可控。</div>
+            </div>
+            <div class="timeline-item pixel-box" data-step="3">
+              <strong>推荐习惯</strong>
+              <div class="muted">大项目先用 Plan Mode，涉及前端则明确强调前端设计要求。</div>
+            </div>
+          </div>
+        </aside>
+      </div>
     </section>
 
-    <!-- 简介部分 -->
-    <section id="intro" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-gray-900 mb-6">为什么选择 CodeX？</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    一纸禁令让 Claude 对中国地区的封锁更加严格；价格高、易封号，让 Claude Code 的使用门槛持续走高。
-                </p>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-8 mb-16">
-                <div class="bg-red-50 p-8 rounded-xl border-l-4 border-red-500 card-hover">
-                    <div class="flex items-center mb-4">
-                        <i class="fas fa-exclamation-triangle text-red-500 text-2xl mr-3"></i>
-                        <h3 class="text-xl font-semibold text-red-800">Claude Code 的痛点</h3>
-                    </div>
-                    <ul class="text-red-700 space-y-2">
-                        <li>• 价格高昂，使用成本大</li>
-                        <li>• 容易被封号，稳定性差</li>
-                        <li>• 对中国地区限制严格</li>
-                        <li>• 需要魔法上网，网络复杂</li>
-                    </ul>
-                </div>
-
-                <div class="bg-green-50 p-8 rounded-xl border-l-4 border-green-500 card-hover">
-                    <div class="flex items-center mb-4">
-                        <i class="fas fa-check-circle text-green-500 text-2xl mr-3"></i>
-                        <h3 class="text-xl font-semibold text-green-800">CodeX 的优势</h3>
-                    </div>
-                    <ul class="text-green-700 space-y-2">
-                        <li>• 价格实惠，一个月仅需80元</li>
-                        <li>• 无需魔法，国内即可使用</li>
-                        <li>• 支持联网执行，功能强大</li>
-                        <li>• 基于GPT-5，性能卓越</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="bg-gradient-to-r from-blue-500 to-purple-600 text-white p-8 rounded-xl text-center">
-                <h3 class="text-2xl font-bold mb-4">行业趋势</h3>
-                <p class="text-lg mb-6">
-                    6月3日，OpenAI宣布Codex全面开放，支持联网执行，把"AI写代码"从实验室直接丢进大众泳池。
-                </p>
-                <div class="grid md:grid-cols-3 gap-6">
-                    <div class="bg-white bg-opacity-20 p-4 rounded-lg">
-                        <div class="text-2xl font-bold">82%</div>
-                        <div class="text-sm">专业开发者使用AI模型</div>
-                    </div>
-                    <div class="bg-white bg-opacity-20 p-4 rounded-lg">
-                        <div class="text-2xl font-bold">22%</div>
-                        <div class="text-sm">平均节省工时</div>
-                    </div>
-                    <div class="bg-white bg-opacity-20 p-4 rounded-lg">
-                        <div class="text-2xl font-bold">50%</div>
-                        <div class="text-sm">2026年AI产出代码比例</div>
-                    </div>
-                </div>
-            </div>
+    <section class="section" id="get">
+      <div class="container">
+        <div class="section-title">
+          <span class="tiny-tag">01 获取方式</span>
+          <h2>先知道它是什么，再决定怎么接入</h2>
+          <p class="muted">README 给了官网订阅、cc-switch 方案和桌面端安装路径。这里按用途拆开。</p>
         </div>
+        <div class="grid-3">
+          <article class="card pixel-box">
+            <h3>Codex 是什么</h3>
+            <p class="muted">它是 OpenAI 的编程 Agent 产品，和 Claude Code 一样不是单纯聊天，而是围绕项目目录、线程、执行能力来做任务推进。</p>
+            <div class="code">Codex = 编程 Agent
+更强工程执行感
+更接近通用 Agent</div>
+            <div class="image-grid">
+              <div class="image-card pixel-box">
+                <img src="https://upload.maynor1024.live/file/1774358257887_image.png#imgIndex=8" alt="Codex 模型介绍配图">
+                <p>模型介绍配图</p>
+              </div>
+              <div class="image-card pixel-box">
+                <img src="https://upload.maynor1024.live/file/1774358264919_image.png#imgIndex=11" alt="Codex 首页界面">
+                <p>Codex 首页界面</p>
+              </div>
+            </div>
+          </article>
+          <article class="card pixel-box">
+            <h3>方式一：官网订阅</h3>
+            <p class="muted">codex 20刀充值链接（自备魔法）</p>
+            <div class="link-list">
+              <a class="blue-link" href="https://maynorai.tqfk.xyz/item/10" target="_blank" rel="noopener noreferrer">官网订阅</a>
+            </div>
+            <div class="image-grid">
+              <div class="image-card pixel-box">
+                <img src="https://upload.maynor1024.live/file/1774358235775_image.png#imgIndex=9" alt="下载应用按钮">
+                <p>下载应用按钮</p>
+              </div>
+              <div class="image-card pixel-box">
+                <img src="https://upload.maynor1024.live/file/1774358277038_image.png#imgIndex=10" alt="Mac 安装包界面">
+                <p>Mac 安装包界面</p>
+              </div>
+            </div>
+          </article>
+          <article class="card pixel-box">
+            <h3>方式二：安装 cc-switch</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>步骤</th>
+                  <th>说明</th>
+                  <th>链接</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>下载安装</td>
+                  <td><a class="blue-link" href="https://github.com/farion1231/cc-switch/releases/" target="_blank" rel="noopener noreferrer">GitHub</a></td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>配置中转API（每天100刀额度）</td>
+                  <td><a class="blue-link" href="https://maynorai.tqfk.xyz/item/15" target="_blank" rel="noopener noreferrer">中转额度</a></td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>详细配置教程</td>
+                  <td><a class="blue-link" href="https://ai.feishu.cn/wiki/JnefwEQRKiNyg6kTnN4cNphnnSh?from=from_copylink" target="_blank" rel="noopener noreferrer">飞书文档</a></td>
+                </tr>
+              </tbody>
+            </table>
+          </article>
+        </div>
+      </div>
     </section>
 
-    <!-- 教程部分 -->
-    <section id="tutorial" class="py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-gray-900 mb-6">Codex 国内成功跑通教程</h2>
-                <p class="text-xl text-gray-600">（以 Mac 为例，其他系统类似）</p>
-            </div>
-
-            <!-- 前置环境 -->
-            <div class="bg-white p-8 rounded-xl shadow-lg mb-8 card-hover">
-                <h3 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-                    <i class="fas fa-tools text-blue-500 mr-3"></i>
-                    前置环境
-                </h3>
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div class="space-y-4">
-                        <div class="flex items-start">
-                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
-                            <div>
-                                <div class="font-semibold">任意系统</div>
-                                <div class="text-gray-600">Windows / macOS / Linux 均可</div>
-                            </div>
-                        </div>
-                        <div class="flex items-start">
-                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
-                            <div>
-                                <div class="font-semibold">Node.js ≥ 18</div>
-                                <div class="text-gray-600">确保Node.js版本符合要求</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-blue-50 p-4 rounded-lg">
-                        <div class="font-semibold text-blue-800 mb-2">获取 Codex 套餐</div>
-                        <a href="https://agi.maynor1024.live/list/#/shop" target="_blank" class="text-blue-600 hover:text-blue-800 underline">
-                            https://agi.maynor1024.live/list/#/shop
-                        </a>
-                        <div class="text-sm text-blue-700 mt-2">
-                            一个月仅需80元，无需魔法即可使用
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 步骤一：安装 -->
-            <div class="bg-white p-8 rounded-xl shadow-lg mb-8 card-hover">
-                <h3 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-                    <span class="bg-green-500 text-white w-8 h-8 rounded-full flex items-center justify-center mr-3">1</span>
-                    步骤一：安装 Codex CLI
-                </h3>
-                <div class="code-block mb-6">
-                    <div class="flex items-center mb-2">
-                        <i class="fas fa-terminal text-green-400 mr-2"></i>
-                        <span class="text-green-400">Terminal</span>
-                    </div>
-                    <code>node -v   # 检查 Node 版本<br>npm i -g @openai/codex  # 安装 Codex CLI</code>
-                </div>
-                <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6">
-                    <div class="flex">
-                        <i class="fas fa-lightbulb text-yellow-400 mr-2"></i>
-                        <div>
-                            <div class="font-semibold text-yellow-800">设置环境变量：</div>
-                            <div class="code-block mt-2 text-sm">
-                                <code>export OPENAI_BASE_URL="https://code.claude-opus.top/openai"<br>export OPENAI_API_KEY="你的API密钥"</code>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div>
-                        <h4 class="font-semibold mb-3">永久设置 (zsh)：</h4>
-                        <div class="code-block text-sm">
-                            <code>echo 'export OPENAI_BASE_URL="https://code.claude-opus.top/openai"' >> ~/.zshrc<br>echo 'export OPENAI_API_KEY="你的API密钥"' >> ~/.zshrc<br>source ~/.zshrc</code>
-                        </div>
-                    </div>
-                    <div>
-                        <h4 class="font-semibold mb-3">永久设置 (bash)：</h4>
-                        <div class="code-block text-sm">
-                            <code>echo 'export OPENAI_BASE_URL="https://code.claude-opus.top/openai"' >> ~/.bash_profile<br>echo 'export OPENAI_API_KEY="你的API密钥"' >> ~/.bash_profile<br>source ~/.bash_profile</code>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 步骤二：启动 -->
-            <div class="bg-white p-8 rounded-xl shadow-lg mb-8 card-hover">
-                <h3 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-                    <span class="bg-green-500 text-white w-8 h-8 rounded-full flex items-center justify-center mr-3">2</span>
-                    步骤二：启动 Codex
-                </h3>
-                <div class="code-block mb-6">
-                    <code>codex  # 定义你的模型</code>
-                </div>
-                <div class="bg-blue-50 p-6 rounded-lg">
-                    <h4 class="font-semibold text-blue-800 mb-4">选择建议（强烈推荐选第1个）：</h4>
-                    <div class="grid md:grid-cols-2 gap-4">
-                        <div class="bg-white p-4 rounded-lg border-l-4 border-green-500">
-                            <div class="font-semibold text-green-800 mb-2">选项1（Full Access）</div>
-                            <div class="text-sm text-gray-600">Codex可在/root目录直接执行命令或修改文件，无需逐次确认。效率最高。</div>
-                        </div>
-                        <div class="bg-white p-4 rounded-lg border-l-4 border-yellow-500">
-                            <div class="font-semibold text-yellow-800 mb-2">选项2（Ask for Approval）</div>
-                            <div class="text-sm text-gray-600">每次改文件/执行命令都会先询问确认，安全性更高，适合在生产机或关键目录操作。</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 步骤三：使用 -->
-            <div class="bg-white p-8 rounded-xl shadow-lg mb-8 card-hover">
-                <h3 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-                    <span class="bg-green-500 text-white w-8 h-8 rounded-full flex items-center justify-center mr-3">3</span>
-                    步骤三：开始使用
-                </h3>
-                <p class="text-gray-600 mb-6">
-                    进入 OpenAI Codex CLI 交互界面后即可开干。界面提供了几条常用命令：
-                </p>
-                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-                    <div class="bg-gray-50 p-4 rounded-lg text-center">
-                        <i class="fas fa-file-alt text-blue-500 text-2xl mb-2"></i>
-                        <div class="font-semibold">/init</div>
-                        <div class="text-sm text-gray-600">创建AGENTS.md配置模板</div>
-                    </div>
-                    <div class="bg-gray-50 p-4 rounded-lg text-center">
-                        <i class="fas fa-info-circle text-green-500 text-2xl mb-2"></i>
-                        <div class="font-semibold">/status</div>
-                        <div class="text-sm text-gray-600">查看当前会话配置</div>
-                    </div>
-                    <div class="bg-gray-50 p-4 rounded-lg text-center">
-                        <i class="fas fa-shield-alt text-yellow-500 text-2xl mb-2"></i>
-                        <div class="font-semibold">/approvals</div>
-                        <div class="text-sm text-gray-600">设置操作确认模式</div>
-                    </div>
-                    <div class="bg-gray-50 p-4 rounded-lg text-center">
-                        <i class="fas fa-cog text-purple-500 text-2xl mb-2"></i>
-                        <div class="font-semibold">/model</div>
-                        <div class="text-sm text-gray-600">选择模型和推理强度</div>
-                    </div>
-                </div>
-                <div class="bg-green-50 border-l-4 border-green-400 p-4">
-                    <div class="flex">
-                        <i class="fas fa-star text-green-400 mr-2"></i>
-                        <div>
-                            <div class="font-semibold text-green-800">建议配置：</div>
-                            <div class="text-green-700 mt-1">gpt-5 + high；审批选择 Full Access，尽量减少打断</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 额外配置 -->
-            <div class="bg-white p-8 rounded-xl shadow-lg mb-8 card-hover">
-                <h3 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-                    <i class="fas fa-cogs text-purple-500 mr-3"></i>
-                    Codex 额外配置（推荐）
-                </h3>
-                <p class="text-gray-600 mb-4">
-                    在 <code class="bg-gray-100 px-2 py-1 rounded">~/.codex/config.toml</code> 中添加：
-                </p>
-                <div class="code-block">
-                    <code>disable_response_storage = true</code>
-                </div>
-                <p class="text-gray-600 mt-4">
-                    这样可禁用响应存储，进一步提升隐私与安全。
-                </p>
-            </div>
-
-            <!-- 常见坑位 -->
-            <div class="bg-red-50 border-l-4 border-red-500 p-6 rounded-lg">
-                <h3 class="text-xl font-bold text-red-800 mb-4 flex items-center">
-                    <i class="fas fa-exclamation-triangle text-red-500 mr-2"></i>
-                    常见坑位 & 解决
-                </h3>
-                <div class="bg-white p-4 rounded-lg">
-                    <div class="font-semibold text-red-800 mb-2">极少数 npm 包拉不下来：</div>
-                    <div class="text-red-700 mb-2">在 AGENTS.md 写死</div>
-                    <div class="code-block text-sm">
-                        <code>registry=https://registry.npmmirror.com/</code>
-                    </div>
-                    <div class="text-red-700 mt-2">一劳永逸</div>
-                </div>
-            </div>
+    <section class="section" id="concepts">
+      <div class="container">
+        <div class="section-title">
+          <span class="tiny-tag">02 核心概念</span>
+          <h2>理解 Threads，才算真正会用 Codex</h2>
+          <p class="muted">README 的重点不是安装命令，而是这套工作组织方式：文件夹是工作区，Thread 是具体任务线。</p>
         </div>
+        <div class="compare-grid">
+          <article class="compare-card pixel-box">
+            <h3>两层结构</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>层级</th>
+                  <th>名称</th>
+                  <th>作用</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>第一层</td>
+                  <td>文件夹 / 工作区</td>
+                  <td>承载项目目录、资料和代码</td>
+                </tr>
+                <tr>
+                  <td>第二层</td>
+                  <td>Thread</td>
+                  <td>围绕单一目标推进的任务对话线</td>
+                </tr>
+              </tbody>
+            </table>
+          </article>
+          <article class="compare-card pixel-box">
+            <h3>为什么这样设计</h3>
+            <ul class="pixel-list">
+              <li>不同任务拆进不同 Thread，减少上下文串味</li>
+              <li>文件和过程分离，查找路径更清晰</li>
+              <li>中断后容易续写，不容易整锅乱掉</li>
+              <li>适合一个项目里并行推进多个目标</li>
+            </ul>
+            <p class="muted">黄金法则：同一个文件夹只做一个大方向，同一个 Thread 只推进一件具体的事。</p>
+          </article>
+        </div>
+        <div class="image-grid image-grid-3">
+          <div class="image-card pixel-box">
+            <img src="https://upload.maynor1024.live/file/1774358264919_image.png#imgIndex=11" alt="Threads 首页界面">
+            <p>Threads 首页界面</p>
+          </div>
+          <div class="image-card pixel-box">
+            <img src="https://upload.maynor1024.live/file/1774358266229_image.png#imgIndex=15" alt="添加项目文件夹入口">
+            <p>添加项目文件夹入口</p>
+          </div>
+          <div class="image-card pixel-box">
+            <img src="https://upload.maynor1024.live/file/1774358248581_image.png#imgIndex=16" alt="添加项目后开 Thread">
+            <p>添加项目后开 Thread</p>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- 对比部分 -->
-    <section id="comparison" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-gray-900 mb-6">Codex 能否平替 Claude Code？</h2>
-                <div class="bg-blue-50 p-6 rounded-xl mb-8">
-                    <p class="text-blue-800">
-                        <strong>统一测试环境：</strong>1C1G 云机 + npm 镜像锁定
-                        <a href="https://www.ikunyun.cn/aff/FQYOYHZM" target="_blank" class="text-blue-600 hover:text-blue-800 underline ml-2">
-                            https://www.ikunyun.cn/aff/FQYOYHZM
-                        </a>
-                    </p>
-                    <p class="text-blue-700 mt-2">Codex 全程跑在云沙盒，结果一目了然：价格更狠、速度持平</p>
-                </div>
-            </div>
-
-            <div class="overflow-x-auto">
-                <table class="w-full bg-white shadow-lg rounded-lg overflow-hidden">
-                    <thead class="bg-gray-50">
-                        <tr>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">任务</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Codex</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Claude Code</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Gemini CLI</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-gray-200">
-                        <tr class="hover:bg-gray-50">
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">100 行 Bug 修复</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-green-600 font-semibold">42 s / $0.009</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">55 s / $0.045</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">68 s / $0.014</td>
-                        </tr>
-                        <tr class="hover:bg-gray-50">
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">300 行重构</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-green-600 font-semibold">4m15s / $0.12</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">5m01s / $0.48</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">6m40s / $0.18</td>
-                        </tr>
-                        <tr class="hover:bg-gray-50">
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">项目初始化</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-green-600 font-semibold">10m58s / $0.31</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">14m20s / $1.35</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">16m05s / $0.44</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="section-title">
+          <span class="tiny-tag">03 项目管理</span>
+          <h2>先把文件夹分清，再谈后续效率</h2>
+          <p class="muted">README 明确建议先做好目录分层，例如学习资料、真实项目、沙盒和通用工具分开。</p>
         </div>
+        <div class="grid-2">
+          <article class="card pixel-box">
+            <h3>推荐结构</h3>
+            <div class="code">dev/
+├── Learning/
+├── notes/
+├── Projects/
+├── sandbox/
+└── tools/</div>
+          </article>
+          <article class="card pixel-box">
+            <h3>管理原则</h3>
+            <ul class="pixel-list">
+              <li>不要什么对话都乱开新 Thread</li>
+              <li>真实开发项目集中放在 Projects</li>
+              <li>工作区负责文件，Thread 负责目标推进</li>
+              <li>前期分类做好，后面才不会越用越乱</li>
+            </ul>
+          </article>
+        </div>
+        <div class="image-grid image-grid-3">
+          <div class="image-card pixel-box">
+            <img src="https://upload.maynor1024.live/file/1774358310568_image.png#imgIndex=12" alt="推荐文件夹结构">
+            <p>推荐文件夹结构</p>
+          </div>
+          <div class="image-card pixel-box">
+            <img src="https://upload.maynor1024.live/file/1774358254412_image.png#imgIndex=13" alt="Projects 示例">
+            <p>Projects 示例</p>
+          </div>
+          <div class="image-card pixel-box">
+            <img src="https://upload.maynor1024.live/file/1774358297085_image.png#imgIndex=14" alt="飞书机器人案例">
+            <p>飞书机器人案例</p>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- 总结部分 -->
-    <section id="conclusion" class="py-20 bg-gradient-to-r from-gray-900 to-gray-800 text-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-4xl font-bold mb-8">让 AI 替你"下班"，香吗？</h2>
-            <div class="bg-white bg-opacity-10 p-8 rounded-xl mb-8">
-                <blockquote class="text-xl italic">
-                    "昨晚有位粉丝说：把最后一批测试交给 Codex 后去洗碗，回来发现 PR 已合并、CI 全绿。他的原话：'真切体会到科技的尽头不是裁员，而是准点下班。'"
-                </blockquote>
-            </div>
-            <div class="mb-8">
-                <h3 class="text-2xl font-semibold mb-4">你觉得五年内，AI 能替你写 100% 代码吗？</h3>
-                <p class="text-lg opacity-90">
-                    希望下一次陪你通宵的是娱乐活动，而不是 Bug。
-                </p>
-            </div>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#tutorial" class="bg-green-500 hover:bg-green-600 text-white px-8 py-3 rounded-lg font-semibold transition-colors">
-                    <i class="fas fa-play mr-2"></i>立即开始使用
-                </a>
-                <a href="https://github.com/xianyu110/gpt-codex" target="_blank" class="bg-white bg-opacity-20 hover:bg-opacity-30 text-white px-8 py-3 rounded-lg font-semibold transition-colors border border-white border-opacity-30">
-                    <i class="fab fa-github mr-2"></i>贡献代码
-                </a>
-            </div>
+    <section class="section" id="features">
+      <div class="container">
+        <div class="section-title">
+          <span class="tiny-tag">04 功能配置</span>
+          <h2>图形化能力，是 README 反复强调的优势</h2>
+          <p class="muted">Codex 不只是命令执行，还把定时任务、Skills、全局规则和权限配置做成了图形化入口。</p>
         </div>
+        <div class="grid-4">
+          <article class="card pixel-box">
+            <h3>定时任务</h3>
+            <p class="muted">可定时巡检服务器、自动修错并通过机器人发送摘要。</p>
+          </article>
+          <article class="card pixel-box">
+            <h3>Skills</h3>
+            <p class="muted">支持图形化管理技能，比纯命令行方式更容易理解与维护。</p>
+          </article>
+          <article class="card pixel-box">
+            <h3>Skill Creator</h3>
+            <p class="muted">可直接通过自然语言创建技能，README 把这一点当作明显优势。</p>
+          </article>
+          <article class="card pixel-box">
+            <h3>Personalization</h3>
+            <p class="muted">相当于图形界面的 `AGENTS.md`，可设置全局规则与工作偏好。</p>
+          </article>
+        </div>
+        <div class="grid-3" style="margin-top: 18px;">
+          <article class="tip pixel-box">
+            <h3>General 推荐</h3>
+            <ul class="pixel-list">
+              <li>保持电脑开机：打开</li>
+              <li>Follow-up behavior：`steer`</li>
+            </ul>
+          </article>
+          <article class="tip pixel-box">
+            <h3>权限建议</h3>
+            <ul class="pixel-list">
+              <li>首页权限改成 `Full access`</li>
+              <li>减少频繁确认，提升连贯执行效率</li>
+            </ul>
+          </article>
+          <article class="tip pixel-box">
+            <h3>推理深度</h3>
+            <ul class="pixel-list">
+              <li>日常开发：`High`</li>
+              <li>难活 / 硬活 / 大活：`Extra High`</li>
+            </ul>
+          </article>
+        </div>
+        <div class="image-grid image-grid-3">
+          <div class="image-card pixel-box">
+            <img src="https://upload.maynor1024.live/file/1774358230424_image.png#imgIndex=17" alt="定时任务界面">
+            <p>定时任务界面</p>
+          </div>
+          <div class="image-card pixel-box">
+            <img src="https://upload.maynor1024.live/file/1774358321275_image.png#imgIndex=18" alt="定时任务效果">
+            <p>定时任务效果</p>
+          </div>
+          <div class="image-card pixel-box">
+            <img src="https://upload.maynor1024.live/file/1774358326352_image.png#imgIndex=19" alt="Skills 界面">
+            <p>Skills 界面</p>
+          </div>
+          <div class="image-card pixel-box">
+            <img src="https://upload.maynor1024.live/file/1774358326136_image.png#imgIndex=20" alt="New Skill 按钮">
+            <p>New Skill 按钮</p>
+          </div>
+          <div class="image-card pixel-box">
+            <img src="https://upload.maynor1024.live/file/1774358309454_image.png#imgIndex=21" alt="Skill Creator 输入界面">
+            <p>Skill Creator 输入界面</p>
+          </div>
+          <div class="image-card pixel-box">
+            <img src="https://upload.maynor1024.live/file/1774358287646_image.png#imgIndex=22" alt="General 设置">
+            <p>General 设置</p>
+          </div>
+          <div class="image-card pixel-box">
+            <img src="https://upload.maynor1024.live/file/1774358223960_image.png#imgIndex=23" alt="Personalization 设置">
+            <p>Personalization 设置</p>
+          </div>
+          <div class="image-card pixel-box">
+            <img src="https://upload.maynor1024.live/file/1774358260172_image.png#imgIndex=24" alt="Full access 权限设置">
+            <p>Full access 权限设置</p>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- 页脚 -->
-    <footer class="bg-gray-900 text-white py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-3 gap-8">
-                <div>
-                    <h3 class="text-xl font-bold mb-4">CodeX 教程</h3>
-                    <p class="text-gray-400">
-                        国内最实用的 Codex 使用指南，帮你快速上手 AI 编程助手。
-                    </p>
-                </div>
-                <div>
-                    <h3 class="text-xl font-bold mb-4">快速链接</h3>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="#intro" class="hover:text-white transition-colors">项目简介</a></li>
-                        <li><a href="#tutorial" class="hover:text-white transition-colors">使用教程</a></li>
-                        <li><a href="#comparison" class="hover:text-white transition-colors">性能对比</a></li>
-                        <li><a href="https://agi.maynor1024.live/list/#/shop" target="_blank" class="hover:text-white transition-colors">获取套餐</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="text-xl font-bold mb-4">关注我们</h3>
-                    <div class="flex space-x-4">
-                        <a href="https://github.com/xianyu110/gpt-codex" target="_blank" class="text-gray-400 hover:text-white transition-colors">
-                            <i class="fab fa-github text-2xl"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                            <i class="fab fa-twitter text-2xl"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                            <i class="fab fa-weixin text-2xl"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2025 CodeX 教程. All rights reserved.</p>
-            </div>
+    <section class="section" id="workflow">
+      <div class="container">
+        <div class="section-title">
+          <span class="tiny-tag">05 使用方法</span>
+          <h2>推荐工作流：先 Plan，再开发，再盯前端效果</h2>
+          <p class="muted">这一段严格按 README 的使用习惯来组织，而不是继续沿用旧页面的 CLI 教程写法。</p>
         </div>
-    </footer>
+        <div class="grid-2">
+          <article class="step pixel-box">
+            <span class="step-index">STEP 1</span>
+            <h3>Plan Mode</h3>
+            <p class="muted">大型项目起始阶段先进入 `/plan`，只做规划，不急着写代码。等实现计划稳定后，再确认执行。</p>
+            <div class="code">大型项目
+-> 先规划
+-> 形成规范与实现计划
+-> 再正式开发</div>
+          </article>
+          <article class="step pixel-box">
+            <span class="step-index">STEP 2</span>
+            <h3>Status 与推理档位</h3>
+            <p class="muted">用 `/status` 看当期用量；常规任务用 High，需要更稳时再拉到 Extra High。</p>
+            <div class="code">/status
+Low / Medium / High / Extra High</div>
+          </article>
+          <article class="step pixel-box">
+            <span class="step-index">STEP 3</span>
+            <h3>语音 / 文字描述需求</h3>
+            <p class="muted">README 明确建议直接“用嘴描述需求”，尤其在复杂任务里，把要求讲清楚比堆 prompt 更重要。</p>
+          </article>
+          <article class="step pixel-box">
+            <span class="step-index">STEP 4</span>
+            <h3>前端要单独盯</h3>
+            <p class="muted">README 特别指出前端效果要第一时间看；效果不好就重做，而不是将就。</p>
+          </article>
+        </div>
+        <div class="image-grid image-grid-3">
+          <div class="image-card pixel-box">
+            <img src="https://upload.maynor1024.live/file/1774358329472_image.png#imgIndex=26" alt="Plan Mode 图标">
+            <p>Plan Mode 图标</p>
+          </div>
+          <div class="image-card pixel-box">
+            <img src="https://upload.maynor1024.live/file/1774358329359_image.png#imgIndex=27" alt="Plan Mode 案例">
+            <p>Plan Mode 案例</p>
+          </div>
+          <div class="image-card pixel-box">
+            <img src="https://upload.maynor1024.live/file/1774358281596_image.png#imgIndex=28" alt="计划产出结果">
+            <p>计划产出结果</p>
+          </div>
+          <div class="image-card pixel-box">
+            <img src="https://upload.maynor1024.live/file/1774358293804_image.png#imgIndex=29" alt="进入开发状态">
+            <p>进入开发状态</p>
+          </div>
+          <div class="image-card pixel-box">
+            <img src="https://upload.maynor1024.live/file/1774358245009_image.png#imgIndex=31" alt="推理深度界面">
+            <p>推理深度界面</p>
+          </div>
+          <div class="image-card pixel-box">
+            <img src="https://upload.maynor1024.live/file/1774358337645_image.png#imgIndex=32" alt="语音输入开发方式">
+            <p>语音输入开发方式</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <!-- 滚动动画脚本 -->
-    <script>
-        // 滚动动画
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+    <section class="section" id="commands">
+      <div class="container">
+        <div class="section-title">
+          <span class="tiny-tag">06 命令速览</span>
+          <h2>常用斜杠命令与并行开发习惯</h2>
+        </div>
+        <div class="grid-3">
+          <article class="command pixel-box">
+            <h3>`/plan`</h3>
+            <p class="muted">进入规划模式，适合从 0 到 1 的大任务。</p>
+          </article>
+          <article class="command pixel-box">
+            <h3>`/status`</h3>
+            <p class="muted">查看用量和剩余额度，判断当前周期资源情况。</p>
+          </article>
+          <article class="command pixel-box">
+            <h3>多 Thread 并行</h3>
+            <p class="muted">README 提到可以同时推进多个 Thread，提高并行开发效率。</p>
+          </article>
+        </div>
+        <div class="image-grid image-grid-3">
+          <div class="image-card pixel-box">
+            <img src="https://upload.maynor1024.live/file/1774358312531_image.png#imgIndex=25" alt="斜杠命令界面">
+            <p>斜杠命令界面</p>
+          </div>
+          <div class="image-card pixel-box">
+            <img src="https://upload.maynor1024.live/file/1774358301530_image.png#imgIndex=30" alt="Status 用量界面">
+            <p>Status 用量界面</p>
+          </div>
+          <div class="image-card pixel-box">
+            <img src="https://upload.maynor1024.live/file/1774358284315_image.png#imgIndex=34" alt="多 Thread 并行开发">
+            <p>多 Thread 并行开发</p>
+          </div>
+          <div class="image-card pixel-box">
+            <img src="https://upload.maynor1024.live/file/1774358238088_image.png#imgIndex=33" alt="前端能力问题示意">
+            <p>前端能力问题示意</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
+    <section class="section" id="summary">
+      <div class="container">
+        <div class="section-title">
+          <span class="tiny-tag">08 总结</span>
+          <h2>会用 AI 写代码，会变成像会用 Excel 一样基础</h2>
+        </div>
+        <div class="quote pixel-box">
+          <p class="lead">README 的结论很明确：对程序员来说，Codex 是提效工具；对非程序员来说，它更像是把原本跨不过去的门槛直接铲平。真正关键的不是会不会写 prompt，而是会不会组织任务、约束目标、检查结果。</p>
+        </div>
+      </div>
+    </section>
 
-        document.querySelectorAll('.scroll-animation').forEach(el => {
-            observer.observe(el);
-        });
+    <section class="section" id="quickref">
+      <div class="container">
+        <div class="section-title">
+          <span class="tiny-tag">09 快速参考卡</span>
+          <h2>把 README 最后那张速查卡直接做成页面模块</h2>
+        </div>
+        <div class="table-wrap pixel-box">
+          <table>
+            <thead>
+              <tr>
+                <th>项目</th>
+                <th>推荐值 / 结论</th>
+                <th>说明</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>核心模型</td>
+                <td>GPT-5.3-codex</td>
+                <td>README 中作为 Codex 主打编程模型出现</td>
+              </tr>
+              <tr>
+                <td>Follow-up behavior</td>
+                <td>steer</td>
+                <td>便于开发过程中持续微调任务方向</td>
+              </tr>
+              <tr>
+                <td>权限</td>
+                <td>Full access</td>
+                <td>减少反复确认，更接近持续执行模式</td>
+              </tr>
+              <tr>
+                <td>日常推理档位</td>
+                <td>High</td>
+                <td>速度与稳定性相对平衡</td>
+              </tr>
+              <tr>
+                <td>复杂任务档位</td>
+                <td>Extra High</td>
+                <td>用于难活、硬活、大活</td>
+              </tr>
+              <tr>
+                <td>常用命令</td>
+                <td>`/plan`、`/status`</td>
+                <td>一个管规划，一个看资源使用</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
 
-        // 平滑滚动
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // 添加一些交互效果
-        document.querySelectorAll('.card-hover').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-5px)';
-            });
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0)';
-            });
-        });
-    </script>
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-card pixel-box">
+        <div class="mini-badge">END</div>
+        <h3 style="margin-top: 16px;">Codex 像素风首页</h3>
+        <p class="muted">页面内容现在与 `README.md` 的章节结构一致，重点落在概念、配置和工作流，而不是旧版那种偏宣传页的写法。</p>
+      </div>
+      <div class="footer-card pixel-box">
+        <h3>页面锚点</h3>
+        <ul class="pixel-list">
+          <li><a href="#overview">概览</a></li>
+          <li><a href="#features">功能配置</a></li>
+          <li><a href="#workflow">使用方法</a></li>
+        </ul>
+      </div>
+      <div class="footer-card pixel-box">
+        <h3>页面特征</h3>
+        <ul class="pixel-list">
+          <li>纯 HTML + CSS</li>
+          <li>无外部 UI 依赖</li>
+          <li>像素边框 + 网格背景</li>
+        </ul>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
