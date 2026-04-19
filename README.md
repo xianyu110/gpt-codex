@@ -232,7 +232,7 @@ README 当前给出的会员与模型对应关系如下：
 README 给出的方式非常直接：
 
 **codex 20 刀充值链接（自备魔法）**：  
-https://maynorai.tqfk.xyz/item/10
+https://maynorai.jichiyun.sbs/buy/7
 
 如果你走这条路线，核心特点就是：
 
@@ -247,7 +247,7 @@ https://maynorai.tqfk.xyz/item/10
 | 步骤 | 说明 | 链接 |
 |------|------|------|
 | **1. 下载安装** | **GitHub 自行安装** | https://github.com/farion1231/cc-switch/releases/ |
-| **2. 配置中转 API** | **每天 100 刀额度** | https://maynorai.tqfk.xyz/item/15 |
+| **2. 配置中转 API** | **每天 150 刀额度** | https://maynorai.jichiyun.sbs/buy/13 |
 | **3. 详细配置教程** | **飞书文档** | https://ai.feishu.cn/wiki/JnefwEQRKiNyg6kTnN4cNphnnSh?from=from_copylink |
 
 这条路线更适合：
