@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Codex 入门教程 | 像素风指南</title>
-  <meta name="description" content="根据 README 重构的 Codex 入门教程首页，包含获取方式、核心概念、功能配置、Plan 模式与快速参考卡。">
+  <meta name="description" content="根据最新 GPT-5.5 信息更新的 Codex 入门教程首页，包含获取方式、核心概念、功能配置、Plan 模式与快速参考卡。">
   <style>
     :root {
       --bg: #120f1d;
@@ -395,10 +395,10 @@
     <section class="hero" id="overview">
       <div class="container hero-grid">
         <div class="hero-main pixel-box">
-          <span class="chip chip-yellow">2026-03 最新整理</span>
+          <span class="chip chip-yellow">2026-04 GPT-5.5 更新</span>
           <h1>Codex 入门教程</h1>
-          <p class="muted">更新时间：2026-03 ｜ 作者：MaynorAI</p>
-          <p class="lead">内容简介：这版首页基于 README 重组，重点覆盖 Codex 的定位、获取方式、核心概念、功能配置和使用流程，帮助你快速建立对 Thread、Plan、Skills 等机制的整体理解。</p>
+          <p class="muted">更新时间：2026-04-27 ｜ 作者：MaynorAI</p>
+          <p class="lead">内容简介：这版首页补充 GPT-5.5 最新官方信息，重点覆盖 Codex 的定位、获取方式、核心概念、功能配置和使用流程，帮助你快速建立对 Thread、Plan、Skills 等机制的整体理解。</p>
           <div class="hero-actions">
             <a class="button button-primary" href="#get">立即查看获取方式</a>
             <a class="button button-secondary" href="#workflow">开始上手</a>
@@ -429,8 +429,8 @@
 
           <div class="stats">
             <div class="stat pixel-box">
-              <strong class="accent-green">GPT-5.3-codex</strong>
-              <span class="muted">README 中强调的 Codex 核心编程模型</span>
+              <strong class="accent-green">GPT-5.5</strong>
+              <span class="muted">OpenAI 最新旗舰模型，Codex 的新主线选择</span>
             </div>
             <div class="stat pixel-box">
               <strong class="accent-yellow">2 层结构</strong>
@@ -444,11 +444,11 @@
         </div>
 
         <aside class="hero-side pixel-box">
-          <h3>README 提炼</h3>
+          <h3>内容提炼</h3>
           <div class="timeline">
             <div class="timeline-item pixel-box" data-step="1">
               <strong>定位</strong>
-              <div class="muted">Codex 是 OpenAI 面向编程场景的 Agent 产品，对标 Claude Code。</div>
+              <div class="muted">Codex 是 OpenAI 面向编程场景的 Agent 产品，GPT-5.5 让它更像强推理 + 强执行的工程负责人。</div>
             </div>
             <div class="timeline-item pixel-box" data-step="2">
               <strong>核心价值</strong>
@@ -468,13 +468,14 @@
         <div class="section-title">
           <span class="tiny-tag">01 获取方式</span>
           <h2>先知道它是什么，再决定怎么接入</h2>
-          <p class="muted">README 给了官网订阅、cc-switch 方案和桌面端安装路径。这里按用途拆开。</p>
+          <p class="muted">这里整理了官网订阅、cc-switch 方案和桌面端安装路径，按用途拆开说明。</p>
         </div>
         <div class="grid-3">
           <article class="card pixel-box">
             <h3>Codex 是什么</h3>
-            <p class="muted">它是 OpenAI 的编程 Agent 产品，和 Claude Code 一样不是单纯聊天，而是围绕项目目录、线程、执行能力来做任务推进。</p>
+            <p class="muted">它是 OpenAI 的编程 Agent 产品，和 Claude Code 一样不是单纯聊天，而是围绕项目目录、线程、执行能力来做任务推进；最新 GPT-5.5 进一步增强了推理、代码修改和验证闭环。</p>
             <div class="code">Codex = 编程 Agent
+GPT-5.5 = 最新旗舰模型
 更强工程执行感
 更接近通用 Agent</div>
             <div class="image-grid">
@@ -486,6 +487,19 @@
                 <img src="https://upload.maynor1024.live/file/1774358264919_image.png#imgIndex=11" alt="Codex 首页界面">
                 <p>Codex 首页界面</p>
               </div>
+            </div>
+          </article>
+          <article class="card pixel-box">
+            <h3>GPT-5.5 最新变化</h3>
+            <p class="muted">OpenAI 在 2026-04-23 发布 GPT-5.5，并将它定位为最新旗舰和最强 Agentic Coding 模型。Codex 侧重点看三件事：</p>
+            <ul class="pixel-list muted">
+              <li>Plus / Pro / Business / Enterprise 可在 ChatGPT 和 Codex 使用</li>
+              <li>Codex 还覆盖 Edu / Go，支持 400K tokens 上下文</li>
+              <li>Fast mode 速度约 1.5 倍，但 token 成本约 2.5 倍</li>
+            </ul>
+            <div class="link-list">
+              <a class="blue-link" href="https://openai.com/index/introducing-gpt-5-5/" target="_blank" rel="noopener noreferrer">官方发布页</a>
+              <a class="blue-link" href="https://developers.openai.com/api/docs/models/gpt-5.5" target="_blank" rel="noopener noreferrer">API 模型页</a>
             </div>
           </article>
           <article class="card pixel-box">
@@ -543,7 +557,7 @@
         <div class="section-title">
           <span class="tiny-tag">02 核心概念</span>
           <h2>理解 Threads，才算真正会用 Codex</h2>
-          <p class="muted">README 的重点不是安装命令，而是这套工作组织方式：文件夹是工作区，Thread 是具体任务线。</p>
+          <p class="muted">重点不是安装命令，而是这套工作组织方式：文件夹是工作区，Thread 是具体任务线。</p>
         </div>
         <div class="compare-grid">
           <article class="compare-card pixel-box">
@@ -603,7 +617,7 @@
         <div class="section-title">
           <span class="tiny-tag">03 项目管理</span>
           <h2>先把文件夹分清，再谈后续效率</h2>
-          <p class="muted">README 明确建议先做好目录分层，例如学习资料、真实项目、沙盒和通用工具分开。</p>
+          <p class="muted">建议先做好目录分层，例如学习资料、真实项目、沙盒和通用工具分开。</p>
         </div>
         <div class="grid-2">
           <article class="card pixel-box">
@@ -646,7 +660,7 @@
       <div class="container">
         <div class="section-title">
           <span class="tiny-tag">04 功能配置</span>
-          <h2>图形化能力，是 README 反复强调的优势</h2>
+          <h2>图形化能力，是 Codex 很适合新手的优势</h2>
           <p class="muted">Codex 不只是命令执行，还把定时任务、Skills、全局规则和权限配置做成了图形化入口。</p>
         </div>
         <div class="grid-4">
@@ -660,7 +674,7 @@
           </article>
           <article class="card pixel-box">
             <h3>Skill Creator</h3>
-            <p class="muted">可直接通过自然语言创建技能，README 把这一点当作明显优势。</p>
+            <p class="muted">可直接通过自然语言创建技能，对新手非常友好。</p>
           </article>
           <article class="card pixel-box">
             <h3>Personalization</h3>
@@ -732,7 +746,7 @@
         <div class="section-title">
           <span class="tiny-tag">05 使用方法</span>
           <h2>推荐工作流：先 Plan，再开发，再盯前端效果</h2>
-          <p class="muted">这一段严格按 README 的使用习惯来组织，而不是继续沿用旧页面的 CLI 教程写法。</p>
+          <p class="muted">这一段按真实使用习惯组织，不再沿用旧页面的 CLI 教程写法。</p>
         </div>
         <div class="grid-2">
           <article class="step pixel-box">
@@ -754,12 +768,12 @@ Low / Medium / High / Extra High</div>
           <article class="step pixel-box">
             <span class="step-index">STEP 3</span>
             <h3>语音 / 文字描述需求</h3>
-            <p class="muted">README 明确建议直接“用嘴描述需求”，尤其在复杂任务里，把要求讲清楚比堆 prompt 更重要。</p>
+            <p class="muted">复杂任务里可以直接“用嘴描述需求”，把要求讲清楚比堆 prompt 更重要。</p>
           </article>
           <article class="step pixel-box">
             <span class="step-index">STEP 4</span>
             <h3>前端要单独盯</h3>
-            <p class="muted">README 特别指出前端效果要第一时间看；效果不好就重做，而不是将就。</p>
+            <p class="muted">前端效果要第一时间看；效果不好就重做，而不是将就。</p>
           </article>
         </div>
         <div class="image-grid image-grid-3">
@@ -808,7 +822,7 @@ Low / Medium / High / Extra High</div>
           </article>
           <article class="command pixel-box">
             <h3>多 Thread 并行</h3>
-            <p class="muted">README 提到可以同时推进多个 Thread，提高并行开发效率。</p>
+            <p class="muted">可以同时推进多个 Thread，提高并行开发效率。</p>
           </article>
         </div>
         <div class="image-grid image-grid-3">
@@ -839,7 +853,7 @@ Low / Medium / High / Extra High</div>
           <h2>会用 AI 写代码，会变成像会用 Excel 一样基础</h2>
         </div>
         <div class="quote pixel-box">
-          <p class="lead">README 的结论很明确：对程序员来说，Codex 是提效工具；对非程序员来说，它更像是把原本跨不过去的门槛直接铲平。真正关键的不是会不会写 prompt，而是会不会组织任务、约束目标、检查结果。</p>
+          <p class="lead">对程序员来说，Codex 是提效工具；对非程序员来说，它更像是把原本跨不过去的门槛直接铲平。真正关键的不是会不会写 prompt，而是会不会组织任务、约束目标、检查结果。</p>
         </div>
       </div>
     </section>
@@ -848,7 +862,7 @@ Low / Medium / High / Extra High</div>
       <div class="container">
         <div class="section-title">
           <span class="tiny-tag">09 快速参考卡</span>
-          <h2>把 README 最后那张速查卡直接做成页面模块</h2>
+          <h2>把常用设置做成一张速查卡</h2>
         </div>
         <div class="table-wrap pixel-box">
           <table>
@@ -862,8 +876,8 @@ Low / Medium / High / Extra High</div>
             <tbody>
               <tr>
                 <td>核心模型</td>
-                <td>GPT-5.3-codex</td>
-                <td>README 中作为 Codex 主打编程模型出现</td>
+                <td>GPT-5.5</td>
+                <td>OpenAI 最新旗舰模型；GPT-5.3-codex 属于历史主打认知</td>
               </tr>
               <tr>
                 <td>Follow-up behavior</td>
@@ -877,13 +891,13 @@ Low / Medium / High / Extra High</div>
               </tr>
               <tr>
                 <td>日常推理档位</td>
-                <td>High</td>
-                <td>速度与稳定性相对平衡</td>
+                <td>Medium</td>
+                <td>先按默认档位跑，速度与成本更稳</td>
               </tr>
               <tr>
                 <td>复杂任务档位</td>
-                <td>Extra High</td>
-                <td>用于难活、硬活、大活</td>
+                <td>High / Extra High</td>
+                <td>用于难活、硬活、大活，注意成本和速度</td>
               </tr>
               <tr>
                 <td>常用命令</td>
