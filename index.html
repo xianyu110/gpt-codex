@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Codex 入门教程 | 像素风指南</title>
-  <meta name="description" content="根据最新 GPT-5.5 信息更新的 Codex 入门教程首页，包含获取方式、核心概念、功能配置、Plan 模式与快速参考卡。">
+  <meta name="description" content="根据最新 GPT-5.5 信息更新的 Codex 入门教程首页，包含获取方式、核心概念、功能配置、Plan 模式、MCP、记忆系统、代码管理与快速参考卡。">
   <style>
     :root {
       --bg: #120f1d;
@@ -398,7 +398,7 @@
           <span class="chip chip-yellow">2026-04 GPT-5.5 更新</span>
           <h1>Codex 入门教程</h1>
           <p class="muted">更新时间：2026-04-27 ｜ 作者：MaynorAI</p>
-          <p class="lead">内容简介：这版首页补充 GPT-5.5 最新官方信息，重点覆盖 Codex 的定位、获取方式、核心概念、功能配置和使用流程，帮助你快速建立对 Thread、Plan、Skills 等机制的整体理解。</p>
+          <p class="lead">内容简介：这版首页补充 GPT-5.5 最新官方信息，重点覆盖 Codex 的定位、获取方式、核心概念、功能配置、MCP、记忆系统、代码管理和使用流程，帮助你快速建立对 Thread、Plan、Skills 等机制的整体理解。</p>
           <div class="hero-actions">
             <a class="button button-primary" href="#get">立即查看获取方式</a>
             <a class="button button-secondary" href="#workflow">开始上手</a>
@@ -687,6 +687,24 @@ GPT-5.5 = 最新旗舰模型
             <p class="muted">相当于图形界面的 `AGENTS.md`，可设置全局规则与工作偏好。</p>
           </article>
         </div>
+        <div class="grid-4" style="margin-top: 18px;">
+          <article class="card pixel-box">
+            <h3>MCP</h3>
+            <p class="muted">给 Codex 接浏览器、数据库、GitHub、文件系统等外部工具和数据源。</p>
+          </article>
+          <article class="card pixel-box">
+            <h3>记忆系统</h3>
+            <p class="muted">沉淀长期偏好、输出格式和项目规则，让协作风格更稳定。</p>
+          </article>
+          <article class="card pixel-box">
+            <h3>云端运行</h3>
+            <p class="muted">适合本地不方便长时间运行、或希望异步推进的任务。</p>
+          </article>
+          <article class="card pixel-box">
+            <h3>电脑自动化</h3>
+            <p class="muted">可用于操作浏览器、检查页面、填表和处理重复动作，但要注意权限边界。</p>
+          </article>
+        </div>
         <div class="grid-3" style="margin-top: 18px;">
           <article class="tip pixel-box">
             <h3>General 推荐</h3>
@@ -751,10 +769,20 @@ GPT-5.5 = 最新旗舰模型
       <div class="container">
         <div class="section-title">
           <span class="tiny-tag">05 使用方法</span>
-          <h2>推荐工作流：先 Plan，再开发，再盯前端效果</h2>
+          <h2>推荐工作流：先跑通小任务，再 Plan，再检查 diff</h2>
           <p class="muted">这一段按真实使用习惯组织，不再沿用旧页面的 CLI 教程写法。</p>
         </div>
         <div class="grid-2">
+          <article class="step pixel-box">
+            <span class="step-index">STEP 0</span>
+            <h3>第一次任务</h3>
+            <p class="muted">先做一个小而可验证的任务：添加项目文件夹、新建 Thread、描述目标、确认计划、执行后预览结果。</p>
+            <div class="code">打开 App
+-> 添加项目文件夹
+-> 新建 Thread
+-> 描述小目标
+-> 检查结果</div>
+          </article>
           <article class="step pixel-box">
             <span class="step-index">STEP 1</span>
             <h3>Plan Mode</h3>
@@ -780,6 +808,15 @@ Low / Medium / High / Extra High</div>
             <span class="step-index">STEP 4</span>
             <h3>前端要单独盯</h3>
             <p class="muted">前端效果要第一时间看；效果不好就重做，而不是将就。</p>
+          </article>
+          <article class="step pixel-box">
+            <span class="step-index">STEP 5</span>
+            <h3>代码管理</h3>
+            <p class="muted">让 Codex 改代码前先说文件和计划；改完看 diff、跑最小检查，确认无误再提交。</p>
+            <div class="code">先说改哪些文件
+-> 看 git diff
+-> 跑最小检查
+-> 再 commit</div>
           </article>
         </div>
         <div class="image-grid image-grid-3">
@@ -909,6 +946,16 @@ Low / Medium / High / Extra High</div>
                 <td>常用命令</td>
                 <td>`/plan`、`/status`</td>
                 <td>一个管规划，一个看资源使用</td>
+              </tr>
+              <tr>
+                <td>代码管理</td>
+                <td>先看 diff，再提交</td>
+                <td>小任务小提交，避免无关改动混在一起</td>
+              </tr>
+              <tr>
+                <td>进阶能力</td>
+                <td>MCP / 记忆 / 云端 / 自动化</td>
+                <td>先掌握基础工作流，再逐步接入高级能力</td>
               </tr>
             </tbody>
           </table>
