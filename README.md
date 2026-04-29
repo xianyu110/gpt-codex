@@ -189,20 +189,43 @@ https://maynorai.jichiyun.sbs/buy/7
 
 ### 2.3 下载安装 Codex
 
-官方动作路径很简单：
+Codex 客户端安装包，也可以理解成 **Codex Desktop App**。官方动作路径很简单：
 
 1. 进入 OpenAI 的 Codex 官网：**https://chatgpt.com/codex**
 2. 点击大大的 **"下载应用"** 按钮
 
 ![图片](https://upload.maynor1024.live/file/1774358235775_image.png#imgIndex=9)
 
-3. 下载 Mac 安装包，安装、登录即可
+#### Mac 用户
+
+Mac 用户最简单，直接打开：**App Store**，搜索：**Codex**，下载安装即可。
+
+官方 macOS 下载链接：
+
+- https://persistent.oaistatic.com/codex-app-prod/Codex.dmg
+
+下载 Mac 安装包后，安装、登录即可。
 
 ![图片](https://upload.maynor1024.live/file/1774358277038_image.png#imgIndex=10)
 
+#### Windows 用户
+
+Windows 用户可以通过微软商店下载安装。
+
+官方地址：
+
+- https://apps.microsoft.com/detail/9plm9xgg6vks
+
+进入页面后：点击 **获取 / 下载**，按照提示安装即可。
+
+系统要求：
+
+- **Windows 10 19041 以上**
+- **需要联网**
+
 下载本身一点都不复杂。真正复杂的，从来不是"下载应用"，而是后面你如何理解它、配置它、组织你的任务。
 
-> 💡 **现实提醒**：README 写这段时提到 **Windows 应用版本当时还没正式上线**。这类信息有时效性，后续请以官方页面实际展示为准。
+> 💡 **现实提醒**：客户端下载地址、商店上架状态和系统要求都有时效性，后续请以官方页面实际展示为准。
 
 ---
 
