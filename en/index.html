@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Codex Beginner Guide | Pixel Guide</title>
+  <meta name="description" content="A complete Codex beginner guide covering access options, core concepts, project structure, feature configuration, Plan Mode, MCP, memory, code management, and quick references.">
+  <style>
+    :root {
+      --bg: #120f1d;
+      --panel: #221c35;
+      --panel-2: #2c2445;
+      --text: #f7f3e9;
+      --muted: #c8bfdc;
+      --cyan: #62f3ff;
+      --pink: #ff6bd6;
+      --yellow: #ffd84d;
+      --green: #7dff8a;
+      --red: #ff7c7c;
+      --border: #0a0812;
+      --shadow: 0 0 0 4px var(--border);
+      --grid: rgba(255, 255, 255, 0.06);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: "Courier New", "Monaco", monospace;
+      color: var(--text);
+      background:
+        linear-gradient(var(--grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid) 1px, transparent 1px),
+        linear-gradient(180deg, #0d0a15 0%, #120f1d 100%);
+      background-size: 24px 24px, 24px 24px, auto;
+      line-height: 1.65;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .pixel-box {
+      background: var(--panel);
+      border: 4px solid var(--border);
+      box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.35);
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(18, 15, 29, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 4px solid var(--border);
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 0;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .brand-badge,
+    .mini-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 42px;
+      height: 42px;
+      padding: 0 10px;
+      background: var(--yellow);
+      color: #241300;
+      border: 4px solid var(--border);
+      box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
+      text-transform: uppercase;
+    }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    .nav a,
+    .button,
+    .chip {
+      padding: 8px 12px;
+      border: 4px solid var(--border);
+      background: var(--panel-2);
+      box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.25);
+      transition: transform 0.15s ease;
+    }
+
+    .nav a:hover,
+    .button:hover,
+    .chip:hover { transform: translate(-2px, -2px); }
+
+    .button-primary { background: var(--cyan); color: #03131a; }
+    .button-secondary { background: var(--pink); color: #23061d; }
+    .chip { display: inline-block; padding: 4px 10px; }
+    .chip-green { background: var(--green); color: #0e240f; }
+    .chip-yellow { background: var(--yellow); color: #2a1b00; }
+    .chip-pink { background: var(--pink); color: #29081e; }
+
+    .hero {
+      padding: 56px 0 36px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.9fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .hero-main,
+    .hero-side { padding: 28px; }
+
+    h1, h2, h3, h4, p { margin-top: 0; }
+
+    h1 {
+      font-size: clamp(32px, 5vw, 64px);
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+
+    h2 {
+      font-size: clamp(24px, 3.6vw, 40px);
+      margin-bottom: 14px;
+    }
+
+    h3 {
+      font-size: 22px;
+      margin-bottom: 14px;
+    }
+
+    .lead {
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 720px;
+    }
+
+    .accent-cyan { color: var(--cyan); }
+    .accent-pink { color: var(--pink); }
+    .accent-yellow { color: var(--yellow); }
+    .accent-green { color: var(--green); }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .stats,
+    .grid-2,
+    .grid-3,
+    .grid-4,
+    .compare-grid,
+    .footer-grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .stats { grid-template-columns: repeat(3, 1fr); margin-top: 22px; }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-4 { grid-template-columns: repeat(4, 1fr); }
+    .compare-grid { grid-template-columns: 1fr 1fr; }
+    .footer-grid { grid-template-columns: 1.2fr 0.9fr 0.9fr; }
+
+    .stat,
+    .card,
+    .step,
+    .command,
+    .footer-card,
+    .timeline-item,
+    .compare-card,
+    .tip,
+    .table-wrap,
+    .quote {
+      padding: 20px;
+    }
+
+    .stat strong,
+    .big-number {
+      display: block;
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .section {
+      padding: 32px 0;
+    }
+
+    .section-title {
+      margin-bottom: 20px;
+    }
+
+    .muted { color: var(--muted); }
+
+    ul.pixel-list {
+      padding-left: 20px;
+      margin: 0;
+    }
+
+    ul.pixel-list li { margin-bottom: 8px; }
+
+    .step-index,
+    .tiny-tag {
+      display: inline-block;
+      padding: 4px 10px;
+      margin-bottom: 12px;
+      border: 4px solid var(--border);
+      background: var(--yellow);
+      color: #241300;
+      box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.25);
+    }
+
+    .tiny-tag { background: var(--cyan); color: #06181a; }
+
+    .code {
+      padding: 14px;
+      border: 4px solid var(--border);
+      background: #130f21;
+      color: var(--green);
+      white-space: pre-wrap;
+      word-break: break-word;
+      box-shadow: inset 0 0 0 2px rgba(255,255,255,0.05);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 720px;
+    }
+
+    th, td {
+      padding: 14px;
+      border: 4px solid var(--border);
+      text-align: left;
+      background: var(--panel);
+      vertical-align: top;
+    }
+
+    th {
+      background: var(--panel-2);
+      color: var(--yellow);
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 16px;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 72px;
+    }
+
+    .timeline-item::before {
+      content: attr(data-step);
+      position: absolute;
+      left: 20px;
+      top: 20px;
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      background: var(--pink);
+      color: #240818;
+      border: 4px solid var(--border);
+      box-shadow: 4px 4px 0 rgba(0,0,0,0.25);
+      font-weight: 700;
+    }
+
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .image-grid.image-grid-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .image-card {
+      padding: 12px;
+      background: #1a1528;
+    }
+
+    .image-card img {
+      width: 100%;
+      border: 4px solid var(--border);
+      box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.25);
+      background: #000;
+    }
+
+    .image-card p {
+      margin: 10px 0 0;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .link-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .blue-link {
+      color: #7cc7ff;
+      text-decoration: underline;
+      word-break: break-all;
+    }
+
+    .blue-link:hover {
+      color: #a8dbff;
+    }
+
+    .footer {
+      padding: 32px 0 48px;
+    }
+
+    .footer small { color: var(--muted); }
+
+    @media (max-width: 960px) {
+      .hero-grid,
+      .grid-2,
+      .grid-3,
+      .grid-4,
+      .stats,
+      .compare-grid,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav { justify-content: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">
+        <span class="brand-badge">CODEx</span>
+        <span>Codex Beginner Guide</span>
+      </div>
+      <nav class="nav">
+        <a href="../index.html">中文</a>
+        <a href="../light/">Light</a>
+        <a href="#overview">Overview</a>
+        <a href="#get">Access</a>
+        <a href="#concepts">Concepts</a>
+        <a href="#features">Features</a>
+        <a href="#workflow">Workflow</a>
+        <a href="#summary">Summary</a>
+        <a href="https://github.com/xianyu110/gpt-codex" target="_blank" rel="noopener noreferrer" title="GitHub repository">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle;">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="overview">
+      <div class="container hero-grid">
+        <div class="hero-main pixel-box">
+          <span class="chip chip-yellow">2026-04 GPT-5.5 Update</span>
+          <h1>Codex Beginner Guide</h1>
+          <p class="muted">Updated: 2026-04-27 | Author: MaynorAI</p>
+          <p class="lead">Overview: this page adds the latest GPT-5.5 information and covers Codex positioning, access paths, core concepts, feature configuration, MCP, memory, code management, and practical workflows, helping you quickly understand Threads, Plan Mode, Skills, and related mechanisms.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#get">View Access Options</a>
+            <a class="button button-secondary" href="#workflow">Start</a>
+            <a class="button" href="#quickref">Quick Reference</a>
+          </div>
+
+          <div class="card pixel-box" style="margin-top: 22px; background: #2f1f12;">
+            <span class="chip chip-yellow">Important</span>
+            <h3 style="margin-top: 14px;">How to Get Codex</h3>
+            <div class="grid-3">
+              <div>
+                <p><strong class="accent-yellow">Official Subscription</strong></p>
+                <p class="muted">Requires your own network access. Closest to the official experience.</p>
+                <div class="link-list">
+                  <a class="blue-link" href="https://maynorai.jichiyun.sbs/buy/7" target="_blank" rel="noopener noreferrer">Codex $20 Top-up</a>
+                </div>
+              </div>
+              <div>
+                <p><strong class="accent-cyan">Third-party Relay</strong></p>
+                <p class="muted">No self-managed network access required. The Codex&GPTimage2 bundle is suitable for getting started quickly.</p>
+                <ul class="pixel-list muted">
+                  <li><a class="blue-link" href="https://maynorai.jichiyun.sbs/buy/30" target="_blank" rel="noopener noreferrer">Bundle Purchase</a></li>
+                  <li><a class="blue-link" href="https://maynorai.jichiyun.sbs/buy/13" target="_blank" rel="noopener noreferrer">Relay API Setup</a></li>
+                  <li><a class="blue-link" href="https://ai.feishu.cn/wiki/JnefwEQRKiNyg6kTnN4cNphnnSh?from=from_copylink" target="_blank" rel="noopener noreferrer">Setup Guide</a></li>
+                </ul>
+              </div>
+              <div>
+                <p><strong class="accent-green">Desktop App</strong></p>
+                <p class="muted">Install the Codex Desktop App first, then sign in or configure access using one of the options above.</p>
+                <ul class="pixel-list muted">
+                  <li><a class="blue-link" href="https://persistent.oaistatic.com/codex-app-prod/Codex.dmg" target="_blank" rel="noopener noreferrer">macOS Download</a></li>
+                  <li><a class="blue-link" href="https://apps.microsoft.com/detail/9plm9xgg6vks" target="_blank" rel="noopener noreferrer">Windows Download</a></li>
+                  <li>Windows requires version 10 19041 or later and an internet connection</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="stats">
+            <div class="stat pixel-box">
+              <strong class="accent-green">GPT-5.5</strong>
+              <span class="muted">OpenAI latest flagship model and the new primary Codex choice</span>
+            </div>
+            <div class="stat pixel-box">
+              <strong class="accent-yellow">2-layer Structure</strong>
+              <span class="muted">Workspace folders plus task Threads reduce context pollution</span>
+            </div>
+            <div class="stat pixel-box">
+              <strong class="accent-cyan">Plan + Skills</strong>
+              <span class="muted">Plan first, then implement; complex projects become more stable</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-side pixel-box">
+          <h3>Key Takeaways</h3>
+          <div class="timeline">
+            <div class="timeline-item pixel-box" data-step="1">
+              <strong>Positioning</strong>
+              <div class="muted">Codex is OpenAI’s agent product for coding. GPT-5.5 makes it feel more like a strong reasoning and execution engineering lead.</div>
+            </div>
+            <div class="timeline-item pixel-box" data-step="2">
+              <strong>Core Value</strong>
+              <div class="muted">It expands “writing code” into general task execution, while threaded management keeps projects controllable.</div>
+            </div>
+            <div class="timeline-item pixel-box" data-step="3">
+              <strong>Recommended Habit</strong>
+              <div class="muted">Use Plan Mode for large projects. For frontend work, explicitly state design requirements.</div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="get">
+      <div class="container">
+        <div class="section-title">
+          <span class="tiny-tag">01 Access</span>
+          <h2>Understand what it is, then choose how to access it</h2>
+          <p class="muted">This section separates official subscription, cc-switch relay setup, and desktop app installation paths.</p>
+        </div>
+        <div class="grid-3">
+          <article class="card pixel-box">
+            <h3>What Codex Is</h3>
+            <p class="muted">Codex is OpenAI’s coding agent product. Like Claude Code, it is not just chat; it advances work around project folders, Threads, and execution capabilities. GPT-5.5 further improves reasoning, code editing, and verification loops.</p>
+            <div class="code">Codex = Coding Agent
+GPT-5.5 = Latest flagship model
+Stronger engineering execution
+Closer to a general agent</div>
+            <div class="image-grid">
+              <div class="image-card pixel-box">
+                <img src="https://upload.maynor1024.live/file/1774358257887_image.png#imgIndex=8" alt="Codex Model overview image">
+                <p>Model overview image</p>
+              </div>
+              <div class="image-card pixel-box">
+                <img src="https://upload.maynor1024.live/file/1774358264919_image.png#imgIndex=11" alt="Codex home screen">
+                <p>Codex home screen</p>
+              </div>
+            </div>
+          </article>
+          <article class="card pixel-box">
+            <h3>Latest GPT-5.5 Changes</h3>
+            <p class="muted">OpenAI released GPT-5.5 on 2026-04-23 and positioned it as the latest flagship and strongest agentic coding model. For Codex, focus on three points:</p>
+            <ul class="pixel-list muted">
+              <li>Plus / Pro / Business / Enterprise can use it in ChatGPT and Codex</li>
+              <li>Codex also covers Edu / Go and supports a 400K-token context window</li>
+              <li>Fast mode is about 1.5x faster, with about 2.5x token cost</li>
+            </ul>
+            <div class="link-list">
+              <a class="blue-link" href="https://openai.com/index/introducing-gpt-5-5/" target="_blank" rel="noopener noreferrer">Official announcement</a>
+              <a class="blue-link" href="https://developers.openai.com/api/docs/models/gpt-5.5" target="_blank" rel="noopener noreferrer">API model page</a>
+            </div>
+          </article>
+          <article class="card pixel-box">
+            <h3>Option 1: Official Subscription</h3>
+            <p class="muted">Codex $20 top-up link. Requires your own network access and is closer to the official experience.</p>
+            <div class="link-list">
+              <a class="blue-link" href="https://maynorai.jichiyun.sbs/buy/7" target="_blank" rel="noopener noreferrer">Official Subscription</a>
+            </div>
+            <div class="image-grid">
+              <div class="image-card pixel-box">
+                <img src="https://upload.maynor1024.live/file/1774358235775_image.png#imgIndex=9" alt="Download app button">
+                <p>Download app button</p>
+              </div>
+              <div class="image-card pixel-box">
+                <img src="https://upload.maynor1024.live/file/1774358277038_image.png#imgIndex=10" alt="Mac installer screen">
+                <p>Mac installer screen</p>
+              </div>
+            </div>
+          </article>
+          <article class="card pixel-box">
+            <h3>Option 2: Third-party Relay and cc-switch</h3>
+            <p class="muted">The Codex&GPTimage2 bundle and relay configuration do not require self-managed network access. They are third-party relay options.</p>
+            <div class="link-list">
+              <a class="blue-link" href="https://maynorai.jichiyun.sbs/buy/30" target="_blank" rel="noopener noreferrer">Codex&GPTimage2 Bundle</a>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Step</th>
+                  <th>Description</th>
+                  <th>Link</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Download and install</td>
+                  <td><a class="blue-link" href="https://github.com/farion1231/cc-switch/releases/" target="_blank" rel="noopener noreferrer">GitHub</a></td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>Configure third-party relay API (no self-managed network access required)</td>
+                  <td><a class="blue-link" href="https://maynorai.jichiyun.sbs/buy/13" target="_blank" rel="noopener noreferrer">Relay quota</a></td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>Detailed setup guide</td>
+                  <td><a class="blue-link" href="https://ai.feishu.cn/wiki/JnefwEQRKiNyg6kTnN4cNphnnSh?from=from_copylink" target="_blank" rel="noopener noreferrer">Feishu doc</a></td>
+                </tr>
+              </tbody>
+            </table>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="concepts">
+      <div class="container">
+        <div class="section-title">
+          <span class="tiny-tag">02 Concepts</span>
+          <h2>Understand Threads to really use Codex</h2>
+          <p class="muted">The important part is not an install command, but the way work is organized: folders are workspaces, and Threads are task lines.</p>
+        </div>
+        <div class="compare-grid">
+          <article class="compare-card pixel-box">
+            <h3>Two-layer Structure</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Layer</th>
+                  <th>Name</th>
+                  <th>Purpose</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Layer 1</td>
+                  <td>Folder / workspace</td>
+                  <td>Contains project files, materials, and code</td>
+                </tr>
+                <tr>
+                  <td>Layer 2</td>
+                  <td>Thread</td>
+                  <td>A task conversation focused on one goal</td>
+                </tr>
+              </tbody>
+            </table>
+          </article>
+          <article class="compare-card pixel-box">
+            <h3>Why it is designed this way</h3>
+            <ul class="pixel-list">
+              <li>Put different tasks into different Threads to reduce context bleed</li>
+              <li>Separate files from process so paths are easier to find</li>
+              <li>Easier to resume after interruptions without mixing everything together</li>
+              <li>Supports parallel goals inside one project</li>
+            </ul>
+            <p class="muted">Golden rule: one broad direction per folder, and one concrete task per Thread.</p>
+          </article>
+        </div>
+        <div class="image-grid image-grid-3">
+          <div class="image-card pixel-box">
+            <img src="https://upload.maynor1024.live/file/1774358264919_image.png#imgIndex=11" alt="Threads home screen">
+            <p>Threads home screen</p>
+          </div>
+          <div class="image-card pixel-box">
+            <img src="https://upload.maynor1024.live/file/1774358266229_image.png#imgIndex=15" alt="Add project folder entry">
+            <p>Add project folder entry</p>
+          </div>
+          <div class="image-card pixel-box">
+            <img src="https://upload.maynor1024.live/file/1774358248581_image.png#imgIndex=16" alt="Open a Thread after adding a project">
+            <p>Open a Thread after adding a project</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="section-title">
+          <span class="tiny-tag">03 Project Management</span>
+          <h2>Organize folders first, then optimize efficiency</h2>
+          <p class="muted">Start by separating directory layers: learning materials, real projects, sandboxes, and reusable tools.</p>
+        </div>
+        <div class="grid-2">
+          <article class="card pixel-box">
+            <h3>Recommended structure</h3>
+            <div class="code">dev/
+├── Learning/
+├── notes/
+├── Projects/
+├── sandbox/
+└── tools/</div>
+          </article>
+          <article class="card pixel-box">
+            <h3>Management Principles</h3>
+            <ul class="pixel-list">
+              <li>Do not open random Threads for every conversation</li>
+              <li>Keep real development projects under Projects</li>
+              <li>The workspace holds files; the Thread advances the goal</li>
+              <li>Good upfront classification prevents chaos later</li>
+            </ul>
+          </article>
+        </div>
+        <div class="image-grid image-grid-3">
+          <div class="image-card pixel-box">
+            <img src="https://upload.maynor1024.live/file/1774358310568_image.png#imgIndex=12" alt="Recommended folder structure">
+            <p>Recommended folder structure</p>
+          </div>
+          <div class="image-card pixel-box">
+            <img src="https://upload.maynor1024.live/file/1774358254412_image.png#imgIndex=13" alt="Projects example">
+            <p>Projects example</p>
+          </div>
+          <div class="image-card pixel-box">
+            <img src="https://upload.maynor1024.live/file/1774358297085_image.png#imgIndex=14" alt="Feishu bot example">
+            <p>Feishu bot example</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="container">
+        <div class="section-title">
+          <span class="tiny-tag">04 Features</span>
+          <h2>Graphical capabilities are a major reason Codex is beginner-friendly</h2>
+          <p class="muted">Codex is not only command execution. It also gives graphical entries for scheduled tasks, Skills, global rules, and permissions.</p>
+        </div>
+        <div class="grid-4">
+          <article class="card pixel-box">
+            <h3>Scheduled Tasks</h3>
+            <p class="muted">Schedule server checks, auto-fix issues, and send summaries through bots.</p>
+          </article>
+          <article class="card pixel-box">
+            <h3>Skills</h3>
+            <p class="muted">Graphically manage Skills, which is easier to understand and maintain than pure CLI workflows.</p>
+          </article>
+          <article class="card pixel-box">
+            <h3>Skill Creator</h3>
+            <p class="muted">Create Skills with natural language, which is friendly for new users.</p>
+          </article>
+          <article class="card pixel-box">
+            <h3>Personalization</h3>
+            <p class="muted">Equivalent to a graphical `AGENTS.md`; set global rules and collaboration preferences.</p>
+          </article>
+        </div>
+        <div class="grid-4" style="margin-top: 18px;">
+          <article class="card pixel-box">
+            <h3>MCP</h3>
+            <p class="muted">Connect Codex to browsers, databases, GitHub, file systems, and other tools or data sources.</p>
+          </article>
+          <article class="card pixel-box">
+            <h3>Memory</h3>
+            <p class="muted">Persist long-term preferences, output formats, and project rules so collaboration stays consistent.</p>
+          </article>
+          <article class="card pixel-box">
+            <h3>Cloud Runs</h3>
+            <p class="muted">Useful when local machines cannot run long jobs or when you want async progress.</p>
+          </article>
+          <article class="card pixel-box">
+            <h3>Computer Automation</h3>
+            <p class="muted">Can operate browsers, inspect pages, fill forms, and handle repetitive actions, but permissions matter.</p>
+          </article>
+        </div>
+        <div class="grid-3" style="margin-top: 18px;">
+          <article class="tip pixel-box">
+            <h3>General Recommendations</h3>
+            <ul class="pixel-list">
+              <li>Keep computer awake: on</li>
+              <li>Follow-up behavior: `steer`</li>
+            </ul>
+          </article>
+          <article class="tip pixel-box">
+            <h3>Permission Advice</h3>
+            <ul class="pixel-list">
+              <li>Set home permission to `Full access`</li>
+              <li>Reduce repeated confirmations and improve execution flow</li>
+            </ul>
+          </article>
+          <article class="tip pixel-box">
+            <h3>Reasoning Effort</h3>
+            <ul class="pixel-list">
+              <li>Daily development: `High`</li>
+              <li>Hard / complex / large work: `Extra High`</li>
+            </ul>
+          </article>
+        </div>
+        <div class="image-grid image-grid-3">
+          <div class="image-card pixel-box">
+            <img src="https://upload.maynor1024.live/file/1774358230424_image.png#imgIndex=17" alt="Scheduled Tasks UI">
+            <p>Scheduled Tasks UI</p>
+          </div>
+          <div class="image-card pixel-box">
+            <img src="https://upload.maynor1024.live/file/1774358321275_image.png#imgIndex=18" alt="Scheduled Tasks result">
+            <p>Scheduled Tasks result</p>
+          </div>
+          <div class="image-card pixel-box">
+            <img src="https://upload.maynor1024.live/file/1774358326352_image.png#imgIndex=19" alt="Skills UI">
+            <p>Skills UI</p>
+          </div>
+          <div class="image-card pixel-box">
+            <img src="https://upload.maynor1024.live/file/1774358326136_image.png#imgIndex=20" alt="New Skill button">
+            <p>New Skill button</p>
+          </div>
+          <div class="image-card pixel-box">
+            <img src="https://upload.maynor1024.live/file/1774358309454_image.png#imgIndex=21" alt="Skill Creator input UI">
+            <p>Skill Creator input UI</p>
+          </div>
+          <div class="image-card pixel-box">
+            <img src="https://upload.maynor1024.live/file/1774358287646_image.png#imgIndex=22" alt="General settings">
+            <p>General settings</p>
+          </div>
+          <div class="image-card pixel-box">
+            <img src="https://upload.maynor1024.live/file/1774358223960_image.png#imgIndex=23" alt="Personalization settings">
+            <p>Personalization settings</p>
+          </div>
+          <div class="image-card pixel-box">
+            <img src="https://upload.maynor1024.live/file/1774358260172_image.png#imgIndex=24" alt="Full access permission setting">
+            <p>Full access permission setting</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="workflow">
+      <div class="container">
+        <div class="section-title">
+          <span class="tiny-tag">05 Workflow</span>
+          <h2>Recommended workflow: start small, then Plan, then inspect the diff</h2>
+          <p class="muted">This section follows real usage habits instead of the old CLI-style tutorial.</p>
+        </div>
+        <div class="grid-2">
+          <article class="step pixel-box">
+            <span class="step-index">STEP 0</span>
+            <h3>First Task</h3>
+            <p class="muted">Start with a small, verifiable task: add a project folder, create a Thread, describe the goal, confirm the plan, then preview the result.</p>
+            <div class="code">Open App
+-> Add project folder
+-> Create Thread
+-> Describe small goal
+-> Check result</div>
+          </article>
+          <article class="step pixel-box">
+            <span class="step-index">STEP 1</span>
+            <h3>Plan Mode</h3>
+            <p class="muted">For large projects, enter `/plan` first. Plan only; do not rush into coding. Confirm execution after the plan stabilizes.</p>
+            <div class="code">Large project
+-> Plan first
+-> Create spec and implementation plan
+-> Then implement</div>
+          </article>
+          <article class="step pixel-box">
+            <span class="step-index">STEP 2</span>
+            <h3>Status and reasoning levels</h3>
+            <p class="muted">Use `/status` to check current usage. Use High for normal work and Extra High when you need more stability.</p>
+            <div class="code">/status
+Low / Medium / High / Extra High</div>
+          </article>
+          <article class="step pixel-box">
+            <span class="step-index">STEP 3</span>
+            <h3>Describe requirements by voice or text</h3>
+            <p class="muted">For complex tasks, you can describe requirements by voice. Clear requirements matter more than prompt stacking.</p>
+          </article>
+          <article class="step pixel-box">
+            <span class="step-index">STEP 4</span>
+            <h3>Watch frontend results separately</h3>
+            <p class="muted">Check frontend output immediately. If it is bad, redo it instead of accepting it.</p>
+          </article>
+          <article class="step pixel-box">
+            <span class="step-index">STEP 5</span>
+            <h3>Code Management</h3>
+            <p class="muted">Before Codex edits code, ask for files and plan. After edits, inspect the diff, run the smallest relevant check, then commit.</p>
+            <div class="code">Say which files first
+-> Review git diff
+-> Run minimum check
+-> Then commit</div>
+          </article>
+        </div>
+        <div class="image-grid image-grid-3">
+          <div class="image-card pixel-box">
+            <img src="https://upload.maynor1024.live/file/1774358329472_image.png#imgIndex=26" alt="Plan Mode icon">
+            <p>Plan Mode icon</p>
+          </div>
+          <div class="image-card pixel-box">
+            <img src="https://upload.maynor1024.live/file/1774358329359_image.png#imgIndex=27" alt="Plan Mode example">
+            <p>Plan Mode example</p>
+          </div>
+          <div class="image-card pixel-box">
+            <img src="https://upload.maynor1024.live/file/1774358281596_image.png#imgIndex=28" alt="Plan output">
+            <p>Plan output</p>
+          </div>
+          <div class="image-card pixel-box">
+            <img src="https://upload.maynor1024.live/file/1774358293804_image.png#imgIndex=29" alt="Enter implementation state">
+            <p>Enter implementation state</p>
+          </div>
+          <div class="image-card pixel-box">
+            <img src="https://upload.maynor1024.live/file/1774358245009_image.png#imgIndex=31" alt="Reasoning Effort UI">
+            <p>Reasoning Effort UI</p>
+          </div>
+          <div class="image-card pixel-box">
+            <img src="https://upload.maynor1024.live/file/1774358337645_image.png#imgIndex=32" alt="Voice input workflow">
+            <p>Voice input workflow</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="commands">
+      <div class="container">
+        <div class="section-title">
+          <span class="tiny-tag">06 Commands</span>
+          <h2>Common slash commands and parallel development habits</h2>
+        </div>
+        <div class="grid-3">
+          <article class="command pixel-box">
+            <h3>`/plan`</h3>
+            <p class="muted">Enter planning mode; good for large from-zero tasks.</p>
+          </article>
+          <article class="command pixel-box">
+            <h3>`/status`</h3>
+            <p class="muted">Check usage and remaining quota for the current cycle.</p>
+          </article>
+          <article class="command pixel-box">
+            <h3>Parallel Threads</h3>
+            <p class="muted">Advance multiple Threads at the same time to improve parallel development efficiency.</p>
+          </article>
+        </div>
+        <div class="image-grid image-grid-3">
+          <div class="image-card pixel-box">
+            <img src="https://upload.maynor1024.live/file/1774358312531_image.png#imgIndex=25" alt="Slash command UI">
+            <p>Slash command UI</p>
+          </div>
+          <div class="image-card pixel-box">
+            <img src="https://upload.maynor1024.live/file/1774358301530_image.png#imgIndex=30" alt="Status usage UI">
+            <p>Status usage UI</p>
+          </div>
+          <div class="image-card pixel-box">
+            <img src="https://upload.maynor1024.live/file/1774358284315_image.png#imgIndex=34" alt="Parallel Threads development">
+            <p>Parallel Threads development</p>
+          </div>
+          <div class="image-card pixel-box">
+            <img src="https://upload.maynor1024.live/file/1774358238088_image.png#imgIndex=33" alt="Frontend capability note">
+            <p>Frontend capability note</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="summary">
+      <div class="container">
+        <div class="section-title">
+          <span class="tiny-tag">08 Summary</span>
+          <h2>Using AI to write code will become as basic as using Excel</h2>
+        </div>
+        <div class="quote pixel-box">
+          <p class="lead">For programmers, Codex is a productivity tool. For non-programmers, it can remove a barrier that used to be hard to cross. The real key is not whether you can write prompts, but whether you can organize tasks, constrain goals, and check results.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="quickref">
+      <div class="container">
+        <div class="section-title">
+          <span class="tiny-tag">09 Quick Reference</span>
+          <h2>Turn common settings into a quick reference</h2>
+        </div>
+        <div class="table-wrap pixel-box">
+          <table>
+            <thead>
+              <tr>
+                <th>Item</th>
+                <th>Recommended value / conclusion</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Core model</td>
+                <td>GPT-5.5</td>
+                <td>OpenAI latest flagship model; GPT-5.3-codex was the earlier common Codex association</td>
+              </tr>
+              <tr>
+                <td>Follow-up behavior</td>
+                <td>steer</td>
+                <td>Useful for steering tasks during development</td>
+              </tr>
+              <tr>
+                <td>Permission</td>
+                <td>Full access</td>
+                <td>Reduces repeated confirmations and enables smoother execution</td>
+              </tr>
+              <tr>
+                <td>Daily reasoning level</td>
+                <td>Medium</td>
+                <td>Start with the default level for better speed and cost balance</td>
+              </tr>
+              <tr>
+                <td>Complex task level</td>
+                <td>High / Extra High</td>
+                <td>Use for difficult, hard, or large tasks; mind cost and speed</td>
+              </tr>
+              <tr>
+                <td>Common commands</td>
+                <td>`/plan`、`/status`</td>
+                <td>One plans work; one checks resource usage</td>
+              </tr>
+              <tr>
+                <td>Code Management</td>
+                <td>Inspect diff before commit</td>
+                <td>Small task, small commit; avoid mixing unrelated changes</td>
+              </tr>
+              <tr>
+                <td>Advanced capabilities</td>
+                <td>MCP / memory / cloud / automation</td>
+                <td>Master the basic workflow before connecting advanced capabilities</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  </body>
+</html>

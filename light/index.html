@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Codex 入门教程 | 像素风指南</title>
+  <title>Codex 入门教程 | 白天模式</title>
   <meta name="description" content="根据最新 GPT-5.5 信息更新的 Codex 入门教程首页，包含获取方式、核心概念、功能配置、Plan 模式、MCP、记忆系统、代码管理与快速参考卡。">
   <style>
     :root {
@@ -366,6 +366,34 @@
 
       .nav { justify-content: flex-start; }
     }
+  
+    :root {
+      --bg: #fff8e7;
+      --panel: #fff2bd;
+      --panel-2: #f7e3a0;
+      --text: #241b12;
+      --muted: #5d5143;
+      --cyan: #007b8a;
+      --pink: #b6217a;
+      --yellow: #ffd84d;
+      --green: #187c35;
+      --red: #b83232;
+      --border: #241b12;
+      --grid: rgba(36, 27, 18, 0.1);
+    }
+    body {
+      background:
+        linear-gradient(var(--grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid) 1px, transparent 1px),
+        linear-gradient(180deg, #fffaf0 0%, #fff1c9 100%);
+      background-size: 24px 24px, 24px 24px, auto;
+    }
+    .topbar { background: rgba(255, 248, 231, 0.94); }
+    .button-primary { color: #03131a; }
+    .button-secondary { color: #23061d; }
+    .blue-link { color: #005f99; }
+    .code { background: #fffaf0; color: #005a25; }
+
   </style>
 </head>
 <body>
@@ -376,8 +404,8 @@
         <span>全网最详细的 Codex 入门教程</span>
       </div>
       <nav class="nav">
-        <a href="en/">EN</a>
-        <a href="light/">白天</a>
+        <a href="../index.html">夜间</a>
+        <a href="../en/">EN</a>
         <a href="#overview">概览</a>
         <a href="#get">获取方式</a>
         <a href="#concepts">核心概念</a>
@@ -397,7 +425,7 @@
     <section class="hero" id="overview">
       <div class="container hero-grid">
         <div class="hero-main pixel-box">
-          <span class="chip chip-yellow">2026-04 GPT-5.5 更新</span>
+          <span class="chip chip-yellow">白天模式 · 2026-04 GPT-5.5 更新</span>
           <h1>Codex 入门教程</h1>
           <p class="muted">更新时间：2026-04-27 ｜ 作者：MaynorAI</p>
           <p class="lead">内容简介：这版首页补充 GPT-5.5 最新官方信息，重点覆盖 Codex 的定位、获取方式、核心概念、功能配置、MCP、记忆系统、代码管理和使用流程，帮助你快速建立对 Thread、Plan、Skills 等机制的整体理解。</p>
@@ -407,7 +435,7 @@
             <a class="button" href="#quickref">查看速查卡</a>
           </div>
 
-          <div class="card pixel-box" style="margin-top: 22px; background: #2f1f12;">
+          <div class="card pixel-box" style="margin-top: 22px; background: var(--panel-2);">
             <span class="chip chip-yellow">重点</span>
             <h3 style="margin-top: 14px;">如何获取 Codex</h3>
             <div class="grid-3">
