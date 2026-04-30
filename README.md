@@ -226,7 +226,7 @@ Windows 用户可以通过微软商店下载安装。
 
 官方地址：
 
-- https://apps.microsoft.com/detail/9plm9xgg6vks
+- https://pan.quark.cn/s/0f1763fe2ac9?pwd=rTQw
 
 进入页面后：点击 **获取 / 下载**，按照提示安装即可。
 
