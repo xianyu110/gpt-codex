@@ -372,8 +372,25 @@
       .grid-4,
       .stats,
       .compare-grid,
+      .image-grid,
+      .image-grid.image-grid-3,
       .footer-grid {
         grid-template-columns: 1fr;
+      }
+
+      .card,
+      .step,
+      .command,
+      .tip,
+      .compare-card,
+      .stat,
+      .quote,
+      .table-wrap {
+        min-width: 0;
+      }
+
+      table {
+        min-width: 0;
       }
 
       .topbar-inner {
@@ -412,6 +429,7 @@
         <a href="#solution">解决方案</a>
         <a href="#usecases">适合人群</a>
         <a href="#process">使用流程</a>
+        <a href="#playbook">方法模板</a>
         <a href="#faq">常见问题</a>
         <a href="https://github.com/xianyu110/codex/blob/master/README.md" target="_blank" rel="noopener noreferrer" title="GitHub README">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle;">
@@ -680,10 +698,77 @@
       </div>
     </section>
 
+    <section class="section" id="surfaces">
+      <div class="container">
+        <div class="section-title">
+          <span class="tiny-tag">05 入口地图</span>
+          <h2>真正用起来，不是只有一个入口</h2>
+          <p class="muted">国内站解决的是“怎么低门槛开始”，但用好 Codex 还要知道不同任务该放到哪个入口里。</p>
+        </div>
+        <div class="table-wrap pixel-box">
+          <table>
+            <thead>
+              <tr>
+                <th>入口</th>
+                <th>更适合什么</th>
+                <th>典型任务</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>桌面 App</td>
+                <td>本地多任务工作台</td>
+                <td>管理项目文件夹、开 Thread、用 Skills、跑自动化任务</td>
+              </tr>
+              <tr>
+                <td>CLI</td>
+                <td>贴近终端和本地仓库</td>
+                <td>修 bug、跑命令、补测试、解释项目结构</td>
+              </tr>
+              <tr>
+                <td>Cloud / Web</td>
+                <td>后台长任务和仓库协作</td>
+                <td>连接 GitHub、分析仓库、生成 PR</td>
+              </tr>
+              <tr>
+                <td>IDE</td>
+                <td>编辑器上下文里的局部修改</td>
+                <td>解释代码、改当前文件、做局部审查</td>
+              </tr>
+              <tr>
+                <td>ChatGPT 手机端</td>
+                <td>离开电脑后继续跟进</td>
+                <td>看进度、回复问题、审批操作、调整方向</td>
+              </tr>
+              <tr>
+                <td>MCP / 插件</td>
+                <td>连接外部工具和数据源</td>
+                <td>浏览器、Notion、Figma、飞书、GitHub、文件系统</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="grid-3" style="margin-top: 18px;">
+          <article class="tip pixel-box">
+            <h3>国内站先解决入口</h3>
+            <p class="muted">先把账号、网络、套餐、配置这几步跑通，再进入桌面 App 或 CLI 做真实任务。</p>
+          </article>
+          <article class="tip pixel-box">
+            <h3>手机端不是远程桌面</h3>
+            <p class="muted">它更像随身工作台，适合查看进度、回复澄清、审批操作；最终 diff review 仍建议回到电脑上做。</p>
+          </article>
+          <article class="tip pixel-box">
+            <h3>新手推荐顺序</h3>
+            <p class="muted">先用桌面 App 跑通小任务，再理解 CLI 和 AGENTS.md，最后再接 MCP、自动化和云端长任务。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <section class="section" id="compare">
       <div class="container">
         <div class="section-title">
-          <span class="tiny-tag">05 对比</span>
+          <span class="tiny-tag">06 对比</span>
           <h2>和官方订阅有什么区别</h2>
           <p class="muted">这里要说清楚：国内站不是 OpenAI 官方订阅，它的价值在于快速可用、低门槛和价格。</p>
         </div>
@@ -729,7 +814,7 @@
     <section class="section" id="process">
       <div class="container">
         <div class="section-title">
-          <span class="tiny-tag">06 流程</span>
+          <span class="tiny-tag">07 流程</span>
           <h2>推荐按这条路径开始</h2>
           <p class="muted">第一次使用 Codex，不建议一上来做大项目。先跑通一个小而明确的任务，最快建立手感。</p>
         </div>
@@ -767,10 +852,89 @@
       </div>
     </section>
 
+    <section class="section" id="playbook">
+      <div class="container">
+        <div class="section-title">
+          <span class="tiny-tag">08 方法模板</span>
+          <h2>入口跑通之后，靠方法让 Codex 稳定交付</h2>
+          <p class="muted">从“买了能用”到“真的帮你干活”，中间差的是任务写法、项目规则和安全边界。</p>
+        </div>
+        <div class="grid-3">
+          <article class="card pixel-box">
+            <h3>任务六要素</h3>
+            <ul class="pixel-list">
+              <li>目标：一句话说明结果</li>
+              <li>背景：给出现象和上下文</li>
+              <li>范围：限定模块或文件</li>
+              <li>约束：写明禁止事项</li>
+              <li>验证：给出命令或检查方式</li>
+              <li>交付：要求总结改动和风险</li>
+            </ul>
+          </article>
+          <article class="card pixel-box">
+            <h3>AGENTS.md</h3>
+            <p class="muted">把项目规则写进仓库根目录，让 Codex 每次进项目都知道命令、风格、边界和验证方式。</p>
+            <div class="code"># AGENTS.md
+## 项目概览
+## 常用命令
+## 代码规范
+## 安全边界
+## 交付要求</div>
+          </article>
+          <article class="card pixel-box">
+            <h3>安全边界</h3>
+            <p class="muted">低风险任务自动化，高风险任务人工确认。删除、部署、数据库、支付、认证、密钥和生产资源都不要无脑放行。</p>
+            <div class="code">先说明命令和影响文件
+不读取 .env / token / 密钥
+不执行删除 / 部署 / 迁移
+除非用户明确确认</div>
+          </article>
+        </div>
+        <div class="table-wrap pixel-box" style="margin-top: 18px;">
+          <table>
+            <thead>
+              <tr>
+                <th>真实场景</th>
+                <th>Codex 可以怎么用</th>
+                <th>验证重点</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>PPT / 演示文稿</td>
+                <td>生成结构、页面文案和初版素材</td>
+                <td>结构、视觉统一、导出效果</td>
+              </tr>
+              <tr>
+                <td>Obsidian / 知识库</td>
+                <td>整理文章、建立索引、生成选题池</td>
+                <td>文件路径、链接、来源准确性</td>
+              </tr>
+              <tr>
+                <td>浏览器自动化</td>
+                <td>检查网页、填写测试表单、截图验证</td>
+                <td>页面状态、点击路径、是否误提交</td>
+              </tr>
+              <tr>
+                <td>Figma / Notion / 飞书</td>
+                <td>读取设计稿、知识库或协作数据</td>
+                <td>权限范围、字段映射、写回位置</td>
+              </tr>
+              <tr>
+                <td>GitHub Actions CI</td>
+                <td>分析失败日志、定位原因、提出最小修复</td>
+                <td>失败复现、测试通过、PR 描述清楚</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
     <section class="section" id="faq">
       <div class="container">
         <div class="section-title">
-          <span class="tiny-tag">07 FAQ</span>
+          <span class="tiny-tag">09 FAQ</span>
           <h2>常见问题</h2>
         </div>
         <div class="grid-3">
@@ -805,7 +969,7 @@
     <section class="section" id="summary">
       <div class="container">
         <div class="section-title">
-          <span class="tiny-tag">08 总结</span>
+          <span class="tiny-tag">10 总结</span>
           <h2>更低门槛开始使用 Codex，更快进入 AI Agent 工作流</h2>
         </div>
         <div class="quote pixel-box">
