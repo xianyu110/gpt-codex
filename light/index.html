@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Codex 入门教程 | 白天模式</title>
   <meta name="description" content="根据最新 GPT-5.5 信息更新的 Codex 入门教程首页，包含获取方式、核心概念、功能配置、Plan 模式、MCP、记忆系统、代码管理与快速参考卡。">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
   <style>
     :root {
       --bg: #120f1d;
@@ -91,6 +92,22 @@
       border: 4px solid var(--border);
       box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
       text-transform: uppercase;
+    }
+
+    .brand-badge {
+      gap: 8px;
+      min-width: 118px;
+      background: #f7f3e9;
+      color: #0f0f10;
+      font-weight: 900;
+      letter-spacing: 0.5px;
+    }
+
+    .codex-mark {
+      width: 26px;
+      height: 26px;
+      flex: 0 0 auto;
+      color: #0f0f10;
     }
 
     .nav {
@@ -355,8 +372,25 @@
       .grid-4,
       .stats,
       .compare-grid,
+      .image-grid,
+      .image-grid.image-grid-3,
       .footer-grid {
         grid-template-columns: 1fr;
+      }
+
+      .card,
+      .step,
+      .command,
+      .tip,
+      .compare-card,
+      .stat,
+      .quote,
+      .table-wrap {
+        min-width: 0;
+      }
+
+      table {
+        min-width: 0;
       }
 
       .topbar-inner {
@@ -400,7 +434,19 @@
   <header class="topbar">
     <div class="container topbar-inner">
       <div class="brand">
-        <span class="brand-badge">CODEx</span>
+        <span class="brand-badge">
+          <svg class="codex-mark" viewBox="0 0 64 64" aria-hidden="true">
+            <rect width="64" height="64" rx="14" fill="currentColor"/>
+            <g fill="none" stroke="#f7f3e9" stroke-width="4.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M32 11.5 44.5 18.7v14.4L32 40.3 19.5 33.1V18.7L32 11.5Z"/>
+              <path d="M19.5 30.9 32 23.7l12.5 7.2"/>
+              <path d="M32 23.7v16.6"/>
+              <path d="M22.5 45.5h12"/>
+              <path d="M40.5 45.5h1"/>
+            </g>
+          </svg>
+          <span>CODEX</span>
+        </span>
         <span>全网最详细的 Codex 入门教程</span>
       </div>
       <nav class="nav">
@@ -411,6 +457,7 @@
         <a href="#concepts">核心概念</a>
         <a href="#features">功能配置</a>
         <a href="#workflow">使用方法</a>
+        <a href="#playbook">方法模板</a>
         <a href="#summary">总结</a>
         <a href="https://github.com/xianyu110/gpt-codex" target="_blank" rel="noopener noreferrer" title="GitHub 仓库">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle;">
@@ -596,10 +643,81 @@ GPT-5.5 = 最新旗舰模型
       </div>
     </section>
 
+    <section class="section" id="surfaces">
+      <div class="container">
+        <div class="section-title">
+          <span class="tiny-tag">02 入口地图</span>
+          <h2>不要只盯着一个入口，先看任务适合放在哪里</h2>
+          <p class="muted">Codex 更像一组入口协同的工作系统。不同任务放到合适入口里，效率会差很多。</p>
+        </div>
+        <div class="table-wrap pixel-box">
+          <table>
+            <thead>
+              <tr>
+                <th>入口</th>
+                <th>更适合什么</th>
+                <th>典型任务</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>桌面 App</td>
+                <td>本地多任务工作台</td>
+                <td>管理项目、开 Thread、用 Skills、跑自动化任务</td>
+              </tr>
+              <tr>
+                <td>CLI</td>
+                <td>贴近终端和本地仓库</td>
+                <td>修 bug、跑命令、补测试、解释项目结构</td>
+              </tr>
+              <tr>
+                <td>Cloud / Web</td>
+                <td>后台长任务和仓库协作</td>
+                <td>连接 GitHub、分析仓库、生成 PR</td>
+              </tr>
+              <tr>
+                <td>IDE</td>
+                <td>编辑器上下文里的局部修改</td>
+                <td>解释代码、改当前文件、做局部审查</td>
+              </tr>
+              <tr>
+                <td>ChatGPT 手机端</td>
+                <td>离开电脑后继续跟进</td>
+                <td>看进度、回复问题、审批操作、调整方向</td>
+              </tr>
+              <tr>
+                <td>MCP / 插件</td>
+                <td>连接外部工具和数据源</td>
+                <td>浏览器、Notion、Figma、飞书、GitHub、文件系统</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="grid-3" style="margin-top: 18px;">
+          <article class="tip pixel-box">
+            <h3>怎么选</h3>
+            <ul class="pixel-list">
+              <li>频繁看命令输出：CLI</li>
+              <li>多任务和 Skills：桌面 App</li>
+              <li>长任务和 PR：Cloud / Web</li>
+            </ul>
+          </article>
+          <article class="tip pixel-box">
+            <h3>手机端定位</h3>
+            <p class="muted">手机端不是远程桌面，更像随身工作台：适合查看进度、回复澄清、审批操作；最终 diff review 仍建议回到电脑上做。</p>
+          </article>
+          <article class="tip pixel-box">
+            <h3>新手顺序</h3>
+            <p class="muted">先用桌面 App 跑通小任务，再理解 CLI 和 AGENTS.md，最后再接 MCP、自动化和云端长任务。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <section class="section" id="concepts">
       <div class="container">
         <div class="section-title">
-          <span class="tiny-tag">02 核心概念</span>
+          <span class="tiny-tag">03 核心概念</span>
           <h2>理解 Threads，才算真正会用 Codex</h2>
           <p class="muted">重点不是安装命令，而是这套工作组织方式：文件夹是工作区，Thread 是具体任务线。</p>
         </div>
@@ -659,7 +777,7 @@ GPT-5.5 = 最新旗舰模型
     <section class="section" id="projects">
       <div class="container">
         <div class="section-title">
-          <span class="tiny-tag">03 项目管理</span>
+          <span class="tiny-tag">04 项目管理</span>
           <h2>先把文件夹分清，再谈后续效率</h2>
           <p class="muted">建议先做好目录分层，例如学习资料、真实项目、沙盒和通用工具分开。</p>
         </div>
@@ -703,7 +821,7 @@ GPT-5.5 = 最新旗舰模型
     <section class="section" id="features">
       <div class="container">
         <div class="section-title">
-          <span class="tiny-tag">04 功能配置</span>
+          <span class="tiny-tag">05 功能配置</span>
           <h2>图形化能力，是 Codex 很适合新手的优势</h2>
           <p class="muted">Codex 不只是命令执行，还把定时任务、Skills、全局规则和权限配置做成了图形化入口。</p>
         </div>
@@ -754,8 +872,8 @@ GPT-5.5 = 最新旗舰模型
           <article class="tip pixel-box">
             <h3>权限建议</h3>
             <ul class="pixel-list">
-              <li>首页权限改成 `Full access`</li>
-              <li>减少频繁确认，提升连贯执行效率</li>
+              <li>低风险任务可用 `Full access` 提升效率</li>
+              <li>高风险任务保留人工确认</li>
             </ul>
           </article>
           <article class="tip pixel-box">
@@ -806,7 +924,7 @@ GPT-5.5 = 最新旗舰模型
     <section class="section" id="workflow">
       <div class="container">
         <div class="section-title">
-          <span class="tiny-tag">05 使用方法</span>
+          <span class="tiny-tag">06 使用方法</span>
           <h2>推荐工作流：先跑通小任务，再 Plan，再检查 diff</h2>
           <p class="muted">这一段按真实使用习惯组织，不再沿用旧页面的 CLI 教程写法。</p>
         </div>
@@ -886,10 +1004,89 @@ Low / Medium / High / Extra High</div>
       </div>
     </section>
 
+    <section class="section" id="playbook">
+      <div class="container">
+        <div class="section-title">
+          <span class="tiny-tag">07 方法模板</span>
+          <h2>会派任务、会写规则，Codex 才能长期稳定干活</h2>
+          <p class="muted">从 CodexGuide 里最值得补的不是中转方式，而是这套任务方法、AGENTS.md 和安全边界。</p>
+        </div>
+        <div class="grid-3">
+          <article class="card pixel-box">
+            <h3>任务六要素</h3>
+            <ul class="pixel-list">
+              <li>目标：一句话说明结果</li>
+              <li>背景：给出现象和上下文</li>
+              <li>范围：限定模块或文件</li>
+              <li>约束：写明禁止事项</li>
+              <li>验证：给出命令或检查方式</li>
+              <li>交付：要求总结改动和风险</li>
+            </ul>
+          </article>
+          <article class="card pixel-box">
+            <h3>AGENTS.md</h3>
+            <p class="muted">把项目规则写进仓库根目录，让 Codex 每次进项目都知道命令、风格、边界和验证方式。</p>
+            <div class="code"># AGENTS.md
+## 项目概览
+## 常用命令
+## 代码规范
+## 安全边界
+## 交付要求</div>
+          </article>
+          <article class="card pixel-box">
+            <h3>安全边界</h3>
+            <p class="muted">低风险任务自动化，高风险任务人工确认。删除、部署、数据库、支付、认证、密钥和生产资源都不要无脑放行。</p>
+            <div class="code">先说明命令和影响文件
+不读取 .env / token / 密钥
+不执行删除 / 部署 / 迁移
+除非用户明确确认</div>
+          </article>
+        </div>
+        <div class="table-wrap pixel-box" style="margin-top: 18px;">
+          <table>
+            <thead>
+              <tr>
+                <th>真实场景</th>
+                <th>Codex 可以怎么用</th>
+                <th>验证重点</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>PPT / 演示文稿</td>
+                <td>生成结构、页面文案和初版素材</td>
+                <td>结构、视觉统一、导出效果</td>
+              </tr>
+              <tr>
+                <td>Obsidian / 知识库</td>
+                <td>整理文章、建立索引、生成选题池</td>
+                <td>文件路径、链接、来源准确性</td>
+              </tr>
+              <tr>
+                <td>浏览器自动化</td>
+                <td>检查网页、填写测试表单、截图验证</td>
+                <td>页面状态、点击路径、是否误提交</td>
+              </tr>
+              <tr>
+                <td>Figma / Notion / 飞书</td>
+                <td>读取设计稿、知识库或协作数据</td>
+                <td>权限范围、字段映射、写回位置</td>
+              </tr>
+              <tr>
+                <td>GitHub Actions CI</td>
+                <td>分析失败日志、定位原因、提出最小修复</td>
+                <td>失败复现、测试通过、PR 描述清楚</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
     <section class="section" id="commands">
       <div class="container">
         <div class="section-title">
-          <span class="tiny-tag">06 命令速览</span>
+          <span class="tiny-tag">08 命令速览</span>
           <h2>常用斜杠命令与并行开发习惯</h2>
         </div>
         <div class="grid-3">
@@ -930,7 +1127,7 @@ Low / Medium / High / Extra High</div>
     <section class="section" id="summary">
       <div class="container">
         <div class="section-title">
-          <span class="tiny-tag">08 总结</span>
+          <span class="tiny-tag">09 总结</span>
           <h2>会用 AI 写代码，会变成像会用 Excel 一样基础</h2>
         </div>
         <div class="quote pixel-box">
@@ -942,7 +1139,7 @@ Low / Medium / High / Extra High</div>
     <section class="section" id="quickref">
       <div class="container">
         <div class="section-title">
-          <span class="tiny-tag">09 快速参考卡</span>
+          <span class="tiny-tag">10 快速参考卡</span>
           <h2>把常用设置做成一张速查卡</h2>
         </div>
         <div class="table-wrap pixel-box">
@@ -967,8 +1164,8 @@ Low / Medium / High / Extra High</div>
               </tr>
               <tr>
                 <td>权限</td>
-                <td>Full access</td>
-                <td>减少反复确认，更接近持续执行模式</td>
+                <td>低风险 Full access，高风险人工确认</td>
+                <td>兼顾持续执行效率和安全边界</td>
               </tr>
               <tr>
                 <td>日常推理档位</td>
