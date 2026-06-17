@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Codex 完整教程目录</title>
+  <meta name="description" content="Codex 中文实战教程目录，覆盖安装、订阅、中转 API、权限、Plan Mode、Threads、Skills、MCP、自动化和 CLI。">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <style>
+    :root {
+      --bg: #120f1d;
+      --panel: #221c35;
+      --panel-2: #2c2445;
+      --text: #f7f3e9;
+      --muted: #c8bfdc;
+      --cyan: #62f3ff;
+      --pink: #ff6bd6;
+      --yellow: #ffd84d;
+      --green: #7dff8a;
+      --border: #0a0812;
+      --grid: rgba(255, 255, 255, 0.06);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Courier New", "Monaco", monospace;
+      color: var(--text);
+      background:
+        linear-gradient(var(--grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid) 1px, transparent 1px),
+        linear-gradient(180deg, #0d0a15 0%, #120f1d 100%);
+      background-size: 24px 24px, 24px 24px, auto;
+      line-height: 1.65;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(1120px, calc(100% - 32px)); margin: 0 auto; }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(18, 15, 29, 0.92);
+      border-bottom: 4px solid var(--border);
+      backdrop-filter: blur(8px);
+    }
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 0;
+    }
+    .brand { font-weight: 900; letter-spacing: 0.5px; }
+    .nav { display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-end; }
+    .nav a,
+    .button,
+    .card {
+      border: 4px solid var(--border);
+      box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.3);
+    }
+    .nav a,
+    .button {
+      display: inline-flex;
+      padding: 8px 12px;
+      background: var(--panel-2);
+    }
+    .button-primary { background: var(--cyan); color: #03131a; }
+    .hero { padding: 52px 0 24px; }
+    .hero-grid,
+    .grid-2,
+    .grid-3 { display: grid; gap: 18px; }
+    .hero-grid { grid-template-columns: 1.2fr 0.8fr; }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .card { background: var(--panel); padding: 20px; }
+    .card h3 { margin: 0 0 10px; color: var(--yellow); }
+    .card p { margin: 0; color: var(--muted); }
+    h1 { font-size: clamp(34px, 5vw, 64px); line-height: 1.1; margin: 0 0 16px; }
+    h2 { font-size: clamp(24px, 3.6vw, 40px); margin: 0 0 16px; }
+    .lead { color: var(--muted); font-size: 18px; max-width: 760px; }
+    .section { padding: 28px 0; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
+    .tag {
+      display: inline-block;
+      padding: 4px 10px;
+      margin-bottom: 12px;
+      border: 4px solid var(--border);
+      background: var(--yellow);
+      color: #241300;
+      box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.25);
+    }
+    ul { padding-left: 20px; margin: 0; color: var(--muted); }
+    li { margin-bottom: 8px; }
+    @media (max-width: 820px) {
+      .hero-grid,
+      .grid-2,
+      .grid-3 { grid-template-columns: 1fr; }
+      .topbar-inner { align-items: flex-start; flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="../index.html">CODEX 教程</a>
+      <nav class="nav">
+        <a href="../index.html">首页</a>
+        <a href="../recipes/">实战案例</a>
+        <a href="../reference/">速查</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="card">
+          <span class="tag">GUIDE</span>
+          <h1>Codex 完整教程目录</h1>
+          <p class="lead">从安装、订阅和中转 API 开始，到 Plan Mode、Threads、AGENTS.md、Skills、MCP、自动化和 CLI，按顺序把 Codex 真正用起来。</p>
+          <div class="actions">
+            <a class="button button-primary" href="guide/00-overview.md">开始学习</a>
+            <a class="button" href="../recipes/readme-to-web.md">第一个实战</a>
+            <a class="button" href="../reference/safety.md">安全速查</a>
+          </div>
+        </div>
+        <aside class="card">
+          <h3>学习顺序</h3>
+          <ul>
+            <li>先跑通安装和账号。</li>
+            <li>再学 App、权限和 Plan Mode。</li>
+            <li>最后沉淀 Skills、MCP 和自动化。</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2>入门教程</h2>
+        <div class="grid-3">
+          <a class="card" href="guide/00-overview.md"><h3>00. 学习路线</h3><p>这份教程怎么用。</p></a>
+          <a class="card" href="guide/01-install.md"><h3>01. 下载与安装</h3><p>桌面 App / CLI 二选一。</p></a>
+          <a class="card" href="guide/02-subscribe.md"><h3>02. 订阅</h3><p>Plus / Pro 怎么理解。</p></a>
+          <a class="card" href="guide/03-third-party-api.md"><h3>03. 中转 API</h3><p>国内站和第三方中转入口。</p></a>
+          <a class="card" href="guide/04-app-tour.md"><h3>04. App 总览</h3><p>界面区域和按钮用途。</p></a>
+          <a class="card" href="guide/05-config.md"><h3>05. 基础配置</h3><p>General、个性化、AGENTS.md。</p></a>
+          <a class="card" href="guide/06-permissions.md"><h3>06. 权限与沙盒</h3><p>Full access 怎么选。</p></a>
+          <a class="card" href="guide/07-plan-mode.md"><h3>07. Plan Mode</h3><p>先规划再开发。</p></a>
+          <a class="card" href="guide/08-slash-commands.md"><h3>08. 斜杠命令</h3><p>/plan、/status、/help。</p></a>
+          <a class="card" href="guide/09-reasoning-depth.md"><h3>09. 推理深度</h3><p>High / Extra High 怎么选。</p></a>
+          <a class="card" href="guide/10-threads.md"><h3>10. Threads</h3><p>任务组织和并行。</p></a>
+          <a class="card" href="guide/11-skills-mcp.md"><h3>11. Skills 与 MCP</h3><p>把一次经验变成工作流。</p></a>
+          <a class="card" href="guide/12-automation.md"><h3>12. 自动化</h3><p>定时任务和监控。</p></a>
+          <a class="card" href="guide/13-cli.md"><h3>13. CLI</h3><p>登录和第一次改代码。</p></a>
+          <a class="card" href="guide/14-first-task.md"><h3>14. 第一个任务</h3><p>README 变网页。</p></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2>继续深入</h2>
+        <div class="grid-2">
+          <a class="card" href="../recipes/index.md"><h3>实战案例库</h3><p>24 个 Codex x X 工作流案例。</p></a>
+          <a class="card" href="../reference/index.html"><h3>速查与安全</h3><p>命令、设置、安全和 FAQ。</p></a>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
+
