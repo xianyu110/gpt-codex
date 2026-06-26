@@ -184,6 +184,7 @@ https://momoai.czvip.cn/products/codex
 | **国内官网入口** | **进入 Codex 国内站登录和配置** | https://codex.chatgpt-plus.top/login |
 | **备用网址** | **主入口访问不稳定时使用备用入口登录** | https://codex2.chatgpt-plus.top/login |
 | **Codex&GPTimage2 套餐** | **第三方中转套餐，不需要自备魔法** | https://maynorai.jichiyun.sbs/buy/30 |
+| **备用店铺链接** | **主购买入口访问不稳定时使用备用店铺** | https://momoai.czvip.cn/products/codex |
 | **配置中转 API** | **配合 cc-switch 使用，每天 150 刀额度，不需要自备魔法** | https://maynorai.jichiyun.sbs/buy/13 |
 
 > ⚠️ **说明**：Codex&GPTimage2 套餐和配置中转都属于第三方中转方案，不是 OpenAI 官方订阅；优点是不用自备魔法，适合想快速跑通的人。
