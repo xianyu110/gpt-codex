@@ -197,8 +197,7 @@ https://momoai.czvip.cn/products/codex
 |------|------|------|
 | **1. 下载安装** | **GitHub 自行安装** | https://github.com/farion1231/cc-switch/releases/ |
 | **2. 配置中转 API** | **第三方中转，不需要自备魔法** | https://maynorai.jichiyun.sbs/buy/13 |
-| **3. 详细配置教程** | **飞书文档** | https://ai.feishu.cn/wiki/JnefwEQRKiNyg6kTnN4cNphnnSh?from=from_copylink |
-| **4. 完整上手教程** | **飞书文档** | https://my.feishu.cn/wiki/AUsJwLKNviWfxXkm6WxcGhqPnKc |
+| **3. 完整文档** | **Gitee 文档** | https://gitee.com/the_efforts_paid_offf/codex |
 
 这条路线更适合：
 
