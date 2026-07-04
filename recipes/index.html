@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Codex 实战案例库 | MaynorAI</title>
+  <meta name="description" content="Codex 实战案例库，覆盖 README 变网页、PPT、Draw.io、Obsidian、Playwright、飞书、GitHub Actions、网页采集、服务器巡检和资料调研。">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <style>
+    :root {
+      --bg: #120f1d;
+      --panel: #221c35;
+      --panel-2: #2c2445;
+      --text: #f7f3e9;
+      --muted: #c8bfdc;
+      --cyan: #62f3ff;
+      --pink: #ff6bd6;
+      --yellow: #ffd84d;
+      --green: #7dff8a;
+      --border: #0a0812;
+      --grid: rgba(255, 255, 255, 0.06);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Courier New", "Monaco", monospace;
+      color: var(--text);
+      background:
+        linear-gradient(var(--grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid) 1px, transparent 1px),
+        linear-gradient(180deg, #0d0a15 0%, #120f1d 100%);
+      background-size: 24px 24px, 24px 24px, auto;
+      line-height: 1.65;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(1120px, calc(100% - 32px)); margin: 0 auto; }
+    .pixel-box,
+    .card,
+    .button,
+    .nav a,
+    table {
+      border: 4px solid var(--border);
+      box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.3);
+    }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(18, 15, 29, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 4px solid var(--border);
+    }
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 0;
+    }
+    .brand { font-weight: 900; letter-spacing: 0.5px; }
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+    .nav a,
+    .button {
+      display: inline-flex;
+      padding: 8px 12px;
+      background: var(--panel-2);
+      transition: transform 0.15s ease;
+    }
+    .nav a:hover,
+    .button:hover,
+    .card:hover { transform: translate(-2px, -2px); }
+    .button-primary { background: var(--cyan); color: #03131a; }
+    .button-secondary { background: var(--pink); color: #23061d; }
+    .hero { padding: 56px 0 36px; }
+    .section { padding: 32px 0; }
+    .hero-grid,
+    .grid-2,
+    .grid-3,
+    .grid-4,
+    .footer-grid {
+      display: grid;
+      gap: 18px;
+    }
+    .hero-grid { grid-template-columns: 1.2fr 0.8fr; gap: 24px; }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-4 { grid-template-columns: repeat(4, 1fr); }
+    .footer-grid { grid-template-columns: 1.2fr 0.9fr 0.9fr; }
+    .card,
+    .hero-main,
+    .hero-side,
+    .table-wrap,
+    .footer-card {
+      background: var(--panel);
+      padding: 20px;
+    }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 {
+      font-size: clamp(34px, 5vw, 64px);
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    h2 {
+      font-size: clamp(24px, 3.6vw, 40px);
+      margin-bottom: 14px;
+    }
+    h3 { color: var(--yellow); margin-bottom: 10px; }
+    .lead {
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 780px;
+    }
+    .muted { color: var(--muted); }
+    .accent-cyan { color: var(--cyan); }
+    .accent-yellow { color: var(--yellow); }
+    .accent-green { color: var(--green); }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+    .tag {
+      display: inline-block;
+      padding: 4px 10px;
+      margin-bottom: 12px;
+      border: 4px solid var(--border);
+      background: var(--yellow);
+      color: #241300;
+      box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.25);
+    }
+    .tag-cyan { background: var(--cyan); color: #06181a; }
+    ul { padding-left: 20px; margin: 0; color: var(--muted); }
+    li { margin-bottom: 8px; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 840px;
+      box-shadow: none;
+    }
+    th, td {
+      padding: 14px;
+      border: 4px solid var(--border);
+      text-align: left;
+      background: var(--panel);
+      vertical-align: top;
+    }
+    th {
+      background: var(--panel-2);
+      color: var(--yellow);
+    }
+    .table-wrap { overflow-x: auto; }
+    .case-link { color: var(--cyan); text-decoration: underline; text-underline-offset: 3px; }
+    .meta { color: var(--green); font-size: 14px; margin-bottom: 8px; }
+    .footer { padding: 32px 0 48px; }
+    @media (max-width: 960px) {
+      .hero-grid,
+      .grid-2,
+      .grid-3,
+      .grid-4,
+      .footer-grid { grid-template-columns: 1fr; }
+      .topbar-inner { align-items: flex-start; flex-direction: column; }
+      .nav { justify-content: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="../index.html">CODEX 实战案例库</a>
+      <nav class="nav">
+        <a href="../index.html">首页</a>
+        <a href="../docs/">教程目录</a>
+        <a href="../reference/">速查</a>
+        <a href="#cases">24 个案例</a>
+        <a href="#template">案例模板</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="overview">
+      <div class="container hero-grid">
+        <div class="hero-main pixel-box">
+          <span class="tag">MaynorAI 实战案例</span>
+          <h1>Codex 实战案例库</h1>
+          <p class="lead">入口页解决“怎么买、怎么进、怎么配置”，案例库解决“进来以后能做什么”。这里把 Codex x X 的工作流拆成 24 个可复用案例，每个案例都有准备输入、提示词、执行动作、验证方式和风险提醒。</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="readme-to-web.md">先做 README 变网页</a>
+            <a class="button button-secondary" href="#cases">查看全部案例</a>
+            <a class="button" href="../docs/guide/14-first-task.md">第一个任务教程</a>
+          </div>
+        </div>
+        <aside class="hero-side pixel-box">
+          <h3>学习顺序</h3>
+          <ul>
+            <li>先做 README 变网页，建立改文件和验证的手感。</li>
+            <li>再做静态站部署，把结果发出去。</li>
+            <li>最后按自己的工作场景选 PPT、Obsidian、飞书、CI 或自动化。</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="quick-picks">
+      <div class="container">
+        <span class="tag tag-cyan">怎么选</span>
+        <h2>按你想得到的结果选案例</h2>
+        <div class="grid-3">
+          <a class="card" href="readme-to-web.md"><h3>先看到成果</h3><p class="meta">README / 静态站</p><p class="muted">适合第一次上手，能马上打开页面检查。</p></a>
+          <a class="card" href="ppt-skill.md"><h3>做内容表达</h3><p class="meta">PPT / 图表 / 视频</p><p class="muted">适合课程、发布会、公众号素材和演示。</p></a>
+          <a class="card" href="obsidian.md"><h3>整理知识库</h3><p class="meta">Obsidian / Wiki / Notion</p><p class="muted">适合把资料变成长期可用的知识资产。</p></a>
+          <a class="card" href="playwright-mcp.md"><h3>接外部工具</h3><p class="meta">MCP / 浏览器 / 数据库</p><p class="muted">适合让 Codex 读网页、读设计稿、查数据。</p></a>
+          <a class="card" href="fix-real-repo.md"><h3>真实开发</h3><p class="meta">Bug / 测试 / CI</p><p class="muted">适合修仓库、补测试、处理失败检查。</p></a>
+          <a class="card" href="web-scrape.md"><h3>自动化</h3><p class="meta">采集 / 巡检 / 通知</p><p class="muted">适合把重复任务变成可追踪流程。</p></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="cases">
+      <div class="container">
+        <span class="tag tag-cyan">24 个案例</span>
+        <h2>完整案例清单</h2>
+        <p class="muted">HTML 页做导航，每个案例的完整执行步骤写在对应 Markdown 文件里。</p>
+        <div class="table-wrap pixel-box">
+          <table>
+            <thead>
+              <tr>
+                <th>分类</th>
+                <th>案例</th>
+                <th>产出</th>
+                <th>适合场景</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>入门</td><td><a class="case-link" href="readme-to-web.md">README 变网页</a></td><td>静态首页</td><td>第一次验证 Codex 能读文件、改文件、预览页面。</td></tr>
+              <tr><td>入门</td><td><a class="case-link" href="deploy-static-site.md">静态网页部署</a></td><td>公网访问链接</td><td>把本地成果发布到 GitHub Pages 或静态托管。</td></tr>
+              <tr><td>内容</td><td><a class="case-link" href="ppt-skill.md">一句话生成 PPT</a></td><td>演示文稿</td><td>把文章、课程或会议纪要变成演示稿。</td></tr>
+              <tr><td>内容</td><td><a class="case-link" href="drawio-diagram.md">Draw.io 架构图</a></td><td>可编辑图表</td><td>把系统结构、流程和数据流画出来。</td></tr>
+              <tr><td>内容</td><td><a class="case-link" href="data-viz.md">CSV 变图表</a></td><td>图表和分析说明</td><td>把数据文件变成趋势图和结论。</td></tr>
+              <tr><td>内容</td><td><a class="case-link" href="animation-video.md">代码生成动画视频</a></td><td>MP4 或网页动画</td><td>把概念、产品流程、教程步骤做成短视频。</td></tr>
+              <tr><td>知识库</td><td><a class="case-link" href="obsidian.md">Obsidian 自动整理</a></td><td>结构化笔记库</td><td>整理文章、选题、课程和项目资料。</td></tr>
+              <tr><td>知识库</td><td><a class="case-link" href="ai-wiki.md">AI Wiki</a></td><td>主题知识库</td><td>围绕一个主题建立长期可更新资料库。</td></tr>
+              <tr><td>知识库</td><td><a class="case-link" href="notion-mcp.md">Notion MCP</a></td><td>Notion 工作区内容</td><td>读取数据库、整理页面、生成周报草稿。</td></tr>
+              <tr><td>MCP</td><td><a class="case-link" href="playwright-mcp.md">Playwright MCP</a></td><td>浏览器自动化结果</td><td>测试网页、点击流程、保存截图。</td></tr>
+              <tr><td>MCP</td><td><a class="case-link" href="figma-mcp.md">Figma MCP</a></td><td>设计稿解析和前端实现</td><td>读设计稿、提取组件和设计 token。</td></tr>
+              <tr><td>MCP</td><td><a class="case-link" href="database-mcp.md">数据库 MCP</a></td><td>查询结果和报表</td><td>用自然语言做只读数据查询。</td></tr>
+              <tr><td>MCP</td><td><a class="case-link" href="github-mcp.md">GitHub MCP</a></td><td>issue / PR 管理</td><td>读取 PR、检查失败、整理修复计划。</td></tr>
+              <tr><td>浏览器</td><td><a class="case-link" href="chrome-control.md">Chrome 控制</a></td><td>基于登录态的浏览器操作</td><td>检查后台、下载资料、读取页面可见内容。</td></tr>
+              <tr><td>浏览器</td><td><a class="case-link" href="web-scrape.md">网页采集</a></td><td>定时抓取和入库</td><td>追踪公开网页、作者主页和公告更新。</td></tr>
+              <tr><td>协作</td><td><a class="case-link" href="feishu-bot.md">飞书机器人</a></td><td>多维表格或机器人流程</td><td>处理团队表格、选题库和消息通知。</td></tr>
+              <tr><td>协作</td><td><a class="case-link" href="wechat-mp.md">公众号流程</a></td><td>采集、排版、发布草稿</td><td>公众号选题、改写、排版和草稿上传。</td></tr>
+              <tr><td>工程</td><td><a class="case-link" href="fix-real-repo.md">真实仓库修 bug</a></td><td>修复代码和测试</td><td>复现问题、最小修复、补测试。</td></tr>
+              <tr><td>工程</td><td><a class="case-link" href="remote-bug-fix.md">云服务器修 Bug</a></td><td>远程排障记录</td><td>服务器日志排查、服务恢复和回滚。</td></tr>
+              <tr><td>工程</td><td><a class="case-link" href="github-actions-ci.md">GitHub Actions CI</a></td><td>CI 修复 PR</td><td>读取失败日志、本地复现、让检查变绿。</td></tr>
+              <tr><td>运维</td><td><a class="case-link" href="server-patrol.md">服务器巡检</a></td><td>巡检报告和通知</td><td>定时检查磁盘、内存、服务和错误日志。</td></tr>
+              <tr><td>移动</td><td><a class="case-link" href="android-remote.md">安卓远程操控</a></td><td>手机自动化操作</td><td>ADB 截图、页面检查和移动端测试。</td></tr>
+              <tr><td>研究</td><td><a class="case-link" href="literature-review.md">文献综述</a></td><td>可复核证据表</td><td>围绕研究问题整理论文证据和局限性。</td></tr>
+              <tr><td>研究</td><td><a class="case-link" href="research-report.md">资料调研报告</a></td><td>带来源报告</td><td>把网络资料整理成可复核中文报告。</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="template">
+      <div class="container">
+        <span class="tag tag-cyan">案例模板</span>
+        <h2>把一次成功任务沉淀成可复用流程</h2>
+        <div class="grid-2">
+          <article class="card">
+            <h3>每个案例都补齐这些信息</h3>
+            <ul>
+              <li>适合谁。</li>
+              <li>准备输入。</li>
+              <li>给 Codex 的提示词。</li>
+              <li>Codex 应该执行什么。</li>
+              <li>怎么验证。</li>
+              <li>常见风险。</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>可直接复制给 Codex</h3>
+            <p class="muted">请把这个任务整理成可复用案例：背景、环境、输入、Codex 执行动作、输出结果、验证方式、风险和失败场景、下次可复用模板。</p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="index.md">查看 Markdown 总览</a>
+              <a class="button" href="credits.md">参考来源</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-card pixel-box">
+        <h3>Codex 实战案例库</h3>
+        <p class="muted">案例页负责告诉用户“买完、装完、配置完以后，第一批真正值得做的任务是什么”。</p>
+      </div>
+      <div class="footer-card pixel-box">
+        <h3>继续学习</h3>
+        <div class="hero-actions">
+          <a class="button button-primary" href="../docs/">教程目录</a>
+          <a class="button button-secondary" href="../reference/">速查</a>
+        </div>
+      </div>
+      <div class="footer-card pixel-box">
+        <h3>入口保留</h3>
+        <p class="muted">国内站、中转 API、购买套餐和飞书教程入口保留在首页与入门教程中。</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
+

@@ -33,6 +33,17 @@
 
 那就继续往下看。
 
+## 🔗 MaynorAI 高星项目导航
+
+- [awesome-openclaw-tutorial](https://github.com/xianyu110/awesome-openclaw-tutorial)：OpenClaw 中文教程合集，从安装配置到实战案例和常见坑位一站式梳理。
+- [clawbot](https://github.com/xianyu110/clawbot)：Clawbot 完整配置指南，帮助开发者把 Claude Code 中转环境快速跑起来。
+- [gpt-codex](https://github.com/xianyu110/gpt-codex)：面向国内开发者的 OpenAI Codex 教程网站，覆盖使用入口、配置和实战案例。
+- [gemini-nanobanana-pro](https://github.com/xianyu110/gemini-nanobanana-pro)：基于 Gemini 图像模型的 AI 图片生成与编辑 Web 应用，适合快速体验文生图和改图流程。
+- [awesome-chatgpt-project](https://github.com/xianyu110/awesome-chatgpt-project)：ChatGPT 注册、项目资源和高效使用技巧整理，帮助新用户快速入门 AI 工具。
+- [awesome-claudcode-tutorial](https://github.com/xianyu110/awesome-claudcode-tutorial)：Claude Code 中文教程，从基础使用到团队级开发工作流。
+- [awesome-gptimage2](https://github.com/xianyu110/awesome-gptimage2)：GPT Image 2 中文资料站，聚焦模型能力、提示词框架和商业图片生成场景。
+- [CodexPlusPlus](https://github.com/xianyu110/CodexPlusPlus)：Codex App 外部增强启动器，通过 DevTools 协议注入增强能力，不修改原始安装文件。
+
 ---
 
 ## 一、什么是 Codex？
