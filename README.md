@@ -208,7 +208,7 @@ https://momoai.czvip.cn/products/codex
 |------|------|------|
 | **1. 下载安装** | **GitHub 自行安装** | https://github.com/farion1231/cc-switch/releases/ |
 | **2. 配置中转 API** | **第三方中转，不需要自备魔法** | https://maynorai.jichiyun.sbs/buy/13 |
-| **3. 完整文档** | **Gitee 文档** | https://gitee.com/the_efforts_paid_offf/codex |
+| **3. 完整文档** | **教程文章** | https://news.maynorai.asia/blog/codex-china-gpt-5-6-launch |
 
 这条路线更适合：
 
