@@ -173,8 +173,8 @@ GPT-5.5 对 Codex 的意义，不只是“模型名换新”。它重点加强�
 
 ### 2.1 获取方式一：官网订阅（需要自备魔法）
 
-**codex 20 刀充值链接（自备魔法）**：
-https://maynorai.jichiyun.sbs/buy/7
+**Codex 100刀额度**：
+https://maynorai.jichiyun.sbs/buy/36
 
 **备用店铺链接**：
 https://momoai.czvip.cn/products/codex
@@ -197,11 +197,11 @@ https://momoai.czvip.cn/products/codex
 | **备用网址 2** | **主入口访问不稳定时使用备用入口登录** | https://codex2.maynor1024.live |
 | **备用网址 3** | **主入口访问不稳定时使用备用入口登录** | https://codex3.maynor1024.live |
 | **备用网址 4** | **主入口访问不稳定时使用备用入口登录** | https://codex4.maynor1024.live |
-| **Codex&GPTimage2 套餐** | **第三方中转套餐，不需要自备魔法** | https://maynorai.jichiyun.sbs/buy/30 |
+| **Codex 100刀额度** | **第三方中转套餐，不需要自备魔法** | https://maynorai.jichiyun.sbs/buy/36 |
 | **备用店铺链接** | **主购买入口访问不稳定时使用备用店铺** | https://momoai.czvip.cn/products/codex |
 | **配置中转 API** | **配合 cc-switch 使用，每天 150 刀额度，不需要自备魔法** | https://maynorai.jichiyun.sbs/buy/13 |
 
-> ⚠️ **说明**：Codex&GPTimage2 套餐和配置中转都属于第三方中转方案，不是 OpenAI 官方订阅；优点是不用自备魔法，适合想快速跑通的人。
+> ⚠️ **说明**：Codex 100刀额度和配置中转都属于第三方中转方案，不是 OpenAI 官方订阅；优点是不用自备魔法，适合想快速跑通的人。
 
 ### 2.3 获取方式三：安装 cc-switch
 

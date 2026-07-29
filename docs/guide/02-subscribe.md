@@ -11,10 +11,10 @@ Codex 的可用额度、模型和部分云端能力与账号套餐有关。新�
 - 能处理支付方式、地区和账号问题的人。
 - 需要更完整 ChatGPT 功能的人。
 
-本仓库原有入口中，保留了一个充值/订阅相关链接：
+Codex 100刀额度购买入口：
 
 ```text
-https://maynorai.jichiyun.sbs/buy/7
+https://maynorai.jichiyun.sbs/buy/36
 ```
 
 这个链接属于原站点已有转化入口，教程改造不删除。
@@ -44,4 +44,3 @@ https://maynorai.jichiyun.sbs/buy/7
 官方订阅不是第三方中转。第三方中转的价值是降低访问、支付和配置门槛，适合想快速跑通的人。
 
 如果你要看中转 API，继续读：[03-third-party-api.md](03-third-party-api.md)。
-
