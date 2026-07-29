@@ -173,8 +173,8 @@ GPT-5.5 对 Codex 的意义，不只是“模型名换新”。它重点加强�
 
 ### 2.1 获取方式一：官网订阅（需要自备魔法）
 
-**Codex 100刀额度**：
-https://maynorai.jichiyun.sbs/buy/36
+**codex 20 刀充值链接（自备魔法）**：
+https://maynorai.jichiyun.sbs/buy/7
 
 **备用店铺链接**：
 https://momoai.czvip.cn/products/codex

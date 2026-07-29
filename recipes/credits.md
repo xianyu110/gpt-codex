@@ -15,5 +15,6 @@
 - `https://codex2.chatgpt-plus.top/login`
 - `https://maynorai.jichiyun.sbs/buy/36`
 - `https://maynorai.jichiyun.sbs/buy/13`
+- `https://maynorai.jichiyun.sbs/buy/7`
 - `https://ai.feishu.cn/wiki/JnefwEQRKiNyg6kTnN4cNphnnSh?from=from_copylink`
 - `https://my.feishu.cn/wiki/Vjulwif06izNiMkPor0cM9uYn1e`
