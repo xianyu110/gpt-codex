@@ -33,6 +33,13 @@
 
 那就继续往下看。
 
+## 快速使用入口
+
+| 用途 | 入口 |
+|------|------|
+| **GPT 使用** | [chatgpt-plus.top/list/#/home](https://chatgpt-plus.top/list/#/home) |
+| **Gemini 使用** | [geminiai.asia/list/#/home](https://geminiai.asia/list/#/home) |
+
 ## 🔗 MaynorAI 高星项目导航
 
 - [awesome-openclaw-tutorial](https://github.com/xianyu110/awesome-openclaw-tutorial)：OpenClaw 中文教程合集，从安装配置到实战案例和常见坑位一站式梳理。
@@ -192,6 +199,8 @@ https://momoai.czvip.cn/products/codex
 
 | 方案 | 说明 | 链接 |
 |------|------|------|
+| **GPT 使用** | **打开 GPT 服务首页** | https://chatgpt-plus.top/list/#/home |
+| **Gemini 使用** | **打开 Gemini 服务首页** | https://geminiai.asia/list/#/home |
 | **国内官网入口** | **进入 Codex 国内站登录和配置** | https://codex.chatgpt-plus.top/login |
 | **备用网址 1** | **主入口访问不稳定时使用备用入口登录** | https://codex2.chatgpt-plus.top/login |
 | **备用网址 2** | **主入口访问不稳定时使用备用入口登录** | https://codex2.maynor1024.live |
