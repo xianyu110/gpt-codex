@@ -27,7 +27,7 @@
 - **README 里的图片全部保留，不省略**
 - **重点信息全部加粗，阅读更省力**
 - **能做成表格的尽量做成表格**
-- **补充 GPT-5.5 的最新官方信息**
+- **补充 GPT-5.6 Sol / Terra / Luna 的最新官方信息**
 
 > **真正写给 Codex 小白用户、能从认知到上手一口气讲清楚的长文**
 
@@ -76,7 +76,7 @@
 | 特性 | Codex | Claude Code |
 |------|-------|-------------|
 | **开发商** | **OpenAI** | **Anthropic** |
-| **底层模型** | **GPT-5.5 / GPT-5.3-codex** | **Claude Opus 4.6** |
+| **底层模型** | **GPT-5.6 Sol / Terra / Luna** | **Claude Opus 4.6** |
 | **定位** | **编程 Agent（趋近通用 Agent）** | **编程 Agent** |
 
 > **Codex 本质上不是"聊天工具的升级版"，而是"执行型 AI"的一个成熟形态。**
@@ -102,16 +102,16 @@
 
 编程 Agent 的终点，越来越接近通用 Agent。
 
-### 1.3 模型对比：GPT-5.5 到底是什么定位？
+### 1.3 模型对比：GPT-5.6 Sol / Terra / Luna 到底是什么定位？
 
 Codex 和 Claude Code 都是上层应用，真正驱动它们的是底层模型：
 
 | 产品 | 模型 | 特点 |
 |------|------|------|
-| **Codex** | **GPT-5.5 / GPT-5.3-codex** | **GPT-5.5 是最新旗舰模型**，兼顾推理、编程 Agent、知识工作和长链路任务；GPT-5.3-codex 是历史上更偏编程特化的主打模型 |
+| **Codex** | **GPT-5.6 Sol / Terra / Luna** | **GPT-5.6 Sol / Terra / Luna 是最新旗舰模型**，兼顾推理、编程 Agent、知识工作和长链路任务；上一代 GPT-5.3-codex 则更偏编程特化 |
 | **Claude Code** | **Claude Opus 4.6** | **通用能力和前端审美通常更强** |
 
-> ⚠️ **不要再把 Codex 只理解成 GPT-5.3-codex。GPT-5.5 让它更接近“强推理 + 强执行”的工程 Agent。**
+> ⚠️ **不要再把 Codex 只理解成 GPT-5.3-codex。GPT-5.6 Sol / Terra / Luna 让它更接近“强推理 + 强执行”的工程 Agent。**
 
 在以下场景它会很强：
 
@@ -121,44 +121,43 @@ Codex 和 Claude Code 都是上层应用，真正驱动它们的是底层模型�
 - **命令执行**
 - **技术任务拆解**
 
-过去的 GPT-5.3-codex 更像“纯编程工人”；现在的 GPT-5.5 更像“工程负责人”：能规划、能执行、能检查，也更适合长上下文和多阶段任务。
+过去的 GPT-5.3-codex 更像“纯编程工人”；现在的 GPT-5.6 Sol / Terra / Luna 更像“工程负责人”：能规划、能执行、能检查，也更适合长上下文和多阶段任务。
 
 ![图片](https://upload.maynor1024.live/file/1774358257887_image.png#imgIndex=8)
 
-### 1.4 GPT-5.5 补充说明（基于 OpenAI 官方信息）
+### 1.4 GPT-5.6 Sol / Terra / Luna 补充说明（基于 OpenAI 官方信息）
 
 如果你只看旧版 README，很容易得到一个印象：**Codex = GPT-5.3-codex**。
 
-但在 **2026-04-23**，OpenAI 官方已经发布 **GPT-5.5**。官方定位可以概括成一句话：
+但在 **2026-04-23**，OpenAI 官方已经发布 **GPT-5.6 Sol / Terra / Luna**。官方定位可以概括成一句话：
 
-> **GPT-5.5 是 OpenAI 最新旗舰模型，也是目前最强的 Agentic Coding 模型。**
+> **GPT-5.6 Sol / Terra / Luna 是 OpenAI 最新旗舰模型，也是目前最强的 Agentic Coding 模型。**
 
 这次更新和 Codex 关系非常直接：
 
-- **GPT-5.5 已进入 ChatGPT 和 Codex**，Plus、Pro、Business、Enterprise 等账号可在 ChatGPT 和 Codex 中使用
+- **GPT-5.6 Sol / Terra / Luna 已进入 ChatGPT 和 Codex**，Plus、Pro、Business、Enterprise 等账号可在 ChatGPT 和 Codex 中使用
 - Codex 侧可用人群还包括 **Edu 和 Go**，上下文窗口扩展到 **400K tokens**
 - Codex 提供新的 **Fast mode**，速度约 **1.5 倍**，但 token 成本约 **2.5 倍**，适合赶时间的任务
-- 官方 API 文档目前也已将 **gpt-5.5** 标为最新旗舰模型；实际能否调用，以你账号的模型列表和官方文档为准
+- 官方 API 文档目前也已将 **GPT-5.6 Sol / Terra / Luna** 标为最新旗舰模型；实际能否调用，以你账号的模型列表和官方文档为准
 
-GPT-5.5 对 Codex 的意义，不只是“模型名换新”。它重点加强的是这些能力：
+GPT-5.6 Sol / Terra / Luna 对 Codex 的意义，不只是“模型名换新”。它重点加强的是这些能力：
 
-| 维度 | 旧认知 | GPT-5.5 最新补充 |
+| 维度 | 旧认知 | GPT-5.6 Sol / Terra / Luna 最新补充 |
 |------|--------|------------------|
-| **Codex 主打模型认知** | **GPT-5.3-codex** | **GPT-5.5 已成为最新旗舰选择** |
+| **Codex 主打模型认知** | **GPT-5.3-codex** | **GPT-5.6 Sol / Terra / Luna 已成为最新旗舰选择** |
 | **模型风格** | **纯编程特化** | **强推理 + 强执行 + 更稳的工具使用** |
 | **适合场景** | **代码生成、重构、工程任务** | **复杂工程、长上下文、多阶段任务、调试与验证闭环** |
 | **对小白的意义** | **更像专业编码工具** | **更像能拆任务、改文件、跑检查的工程负责人** |
 
 一句话总结：
 
-> **如果 GPT-5.3-codex 让 Codex 像一个很强的代码工人，那么 GPT-5.5 正在让它更像一个会规划、会执行、会复盘的工程负责人。**
+> **如果 GPT-5.3-codex 让 Codex 像一个很强的代码工人，那么 GPT-5.6 Sol / Terra / Luna 正在让它更像一个会规划、会执行、会复盘的工程负责人。**
 
 **官方参考：**
 
-- **OpenAI：Introducing GPT-5.5**
+- **OpenAI：最新模型介绍**
   https://openai.com/index/introducing-gpt-5-5/
-- **OpenAI API Docs：GPT-5.5 model page**
-  https://developers.openai.com/api/docs/models/gpt-5.5
+- **OpenAI API Docs：模型页**
 - **OpenAI API Docs：Latest model guide**
   https://developers.openai.com/api/docs/guides/latest-model
 
@@ -166,11 +165,11 @@ GPT-5.5 对 Codex 的意义，不只是“模型名换新”。它重点加强�
 
 | 会员类型 | Codex 可用模型 |
 |----------|----------------|
-| **Plus / Pro / Business / Enterprise** | ✅ **GPT-5.5 可在 ChatGPT 和 Codex 中使用** |
+| **Plus / Pro / Business / Enterprise** | ✅ **GPT-5.6 Sol / Terra / Luna 可在 ChatGPT 和 Codex 中使用** |
 | **Edu / Go** | ✅ **官方发布页列入 Codex 可用范围** |
-| **免费用户** | ⚠️ **官方 GPT-5.5 Codex 可用列表未明确包含，建议以账号内模型列表为准** |
+| **免费用户** | ⚠️ **官方 GPT-5.6 Sol / Terra / Luna Codex 可用列表未明确包含，建议以账号内模型列表为准** |
 
-> ⚠️ **模型权限会随地区、账号、套餐和灰度节奏变化。** 这部分只写官方在 **2026-04-23** 发布 GPT-5.5 时明确给出的信息；实际可用模型，以 **OpenAI 官方页面**和**你账号里的实际模型列表**为准。
+> ⚠️ **模型权限会随地区、账号、套餐和灰度节奏变化。** 这部分只写官方在 **2026-04-23** 发布 GPT-5.6 Sol / Terra / Luna 时明确给出的信息；实际可用模型，以 **OpenAI 官方页面**和**你账号里的实际模型列表**为准。
 
 ---
 
@@ -997,7 +996,7 @@ Codex 越能干，越要养成基本的代码管理习惯。尤其是小白，�
 | 对比项 | Codex | Claude Code |
 |--------|-------|-------------|
 | **开发商** | **OpenAI** | **Anthropic** |
-| **核心模型** | **GPT-5.5（最新旗舰）/ GPT-5.3-codex（历史主打）** | **Claude Opus 4.6** |
+| **核心模型** | **GPT-5.6 Sol / Terra / Luna（最新旗舰）/ GPT-5.3-codex（历史主打）** | **Claude Opus 4.6** |
 | **界面** | ✅ **图形化** | **命令行** |
 | **Skills 管理** | ✅ **图形化界面** | **命令行为主** |
 | **定时任务** | ✅ **支持** | **需要自己配置** |
