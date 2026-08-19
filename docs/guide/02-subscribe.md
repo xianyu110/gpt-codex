@@ -14,7 +14,7 @@ Codex 的可用额度、模型和部分云端能力与账号套餐有关。新�
 本仓库原有入口中，保留了一个充值/订阅相关链接：
 
 ```text
-https://maynorai.jichiyun.sbs/buy/7
+https://momoai.dadoudou117.com/buy/7
 ```
 
 这个链接属于原站点已有转化入口，教程改造不删除。
