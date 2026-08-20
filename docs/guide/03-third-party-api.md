@@ -6,8 +6,8 @@
 
 | 用途 | 链接 |
 | --- | --- |
-| 国内站登录 | `https://codex.chatgpt-plus.top/login` |
-| 备用入口 | `https://codex2.chatgpt-plus.top/login` |
+| 国内站登录 | `https://momoai.asia/login` |
+| 备用入口 | `https://codex.trygpt.asia/login` |
 | Codex&GPTimage2一个月套餐 | `https://momoai.dadoudou117.com/buy/13` |
 | 配置中转 API | `https://momoai.dadoudou117.com/buy/13` |
 | cc-switch 下载 | `https://github.com/farion1231/cc-switch/releases/` |
