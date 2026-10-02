@@ -180,7 +180,7 @@ GPT-5.6 Sol / Terra / Luna 对 Codex 的意义，不只是“模型名换新”�
 ### 2.1 获取方式一：官网订阅（需要自备魔法）
 
 **codex 20 刀充值链接（自备魔法）**：
-https://momoai.dadoudou117.com/buy/7
+https://momoai.czvip.cn/products/gptplus2
 
 **备用店铺链接**：
 https://momoai.czvip.cn/products/codex
@@ -205,9 +205,9 @@ https://momoai.czvip.cn/products/codex
 | **备用网址 2** | **主入口访问不稳定时使用备用入口登录** | https://codex.trygpt.asia |
 | **备用网址 3** | **主入口访问不稳定时使用备用入口登录** | https://codex.trygpt.asia |
 | **备用网址 4** | **主入口访问不稳定时使用备用入口登录** | https://codex.trygpt.asia |
-| **Codex&GPTimage2一个月套餐** | **第三方中转套餐，不需要自备魔法** | https://momoai.dadoudou117.com/buy/13 |
+| **Codex&GPTimage2一个月套餐** | **第三方中转套餐，不需要自备魔法** | https://momoai.czvip.cn/products/m13 |
 | **备用店铺链接** | **主购买入口访问不稳定时使用备用店铺** | https://momoai.czvip.cn/products/codex |
-| **配置中转 API** | **配合 cc-switch 使用，每天 150 刀额度，不需要自备魔法** | https://momoai.dadoudou117.com/buy/13 |
+| **配置中转 API** | **配合 cc-switch 使用，每天 150 刀额度，不需要自备魔法** | https://momoai.czvip.cn/products/m13 |
 
 > ⚠️ **说明**：Codex&GPTimage2一个月套餐和配置中转都属于第三方中转方案，不是 OpenAI 官方订阅；优点是不用自备魔法，适合想快速跑通的人。
 
@@ -218,7 +218,7 @@ https://momoai.czvip.cn/products/codex
 | 步骤 | 说明 | 链接 |
 |------|------|------|
 | **1. 下载安装** | **GitHub 自行安装** | https://github.com/farion1231/cc-switch/releases/ |
-| **2. 配置中转 API** | **第三方中转，不需要自备魔法** | https://momoai.dadoudou117.com/buy/13 |
+| **2. 配置中转 API** | **第三方中转，不需要自备魔法** | https://momoai.czvip.cn/products/m13 |
 | **3. 完整文档** | **教程文章** | https://news.maynorai.asia/blog/codex-china-gpt-5-6-launch |
 
 这条路线更适合：
