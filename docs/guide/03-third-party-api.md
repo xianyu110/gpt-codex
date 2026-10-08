@@ -8,8 +8,8 @@
 | --- | --- |
 | 国内站登录 | `https://momoai.asia/login` |
 | 备用入口 | `https://codex.trygpt.asia/login` |
-| Codex&GPTimage2一个月套餐 | `https://momoai.czvip.cn/products/m13` |
-| 配置中转 API | `https://momoai.czvip.cn/products/m13` |
+| Codex&GPTimage2一个月套餐 | `https://wzyp.cn/item/aus7lo` |
+| 配置中转 API | `https://wzyp.cn/item/aus7lo` |
 | cc-switch 下载 | `https://github.com/farion1231/cc-switch/releases/` |
 | 飞书配置教程 | `https://ai.feishu.cn/wiki/JnefwEQRKiNyg6kTnN4cNphnnSh?from=from_copylink` |
 | 完整上手教程 | `https://my.feishu.cn/wiki/Vjulwif06izNiMkPor0cM9uYn1e` |
