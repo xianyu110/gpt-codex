@@ -38,7 +38,7 @@
 | 用途 | 入口 |
 |------|------|
 | **GPT 使用** | [chatgpt-plus.top/list/#/home](https://chatgpt-plus.top/list/#/home) |
-| **Gemini 使用** | [geminiai.asia/list/#/home](https://geminiai.asia/list/#/home) |
+| **Gemini 使用** | [gemini-ultra.top/list/#/home](https://gemini-ultra.top/list/#/home) |
 
 ## 🔗 MaynorAI 高星项目导航
 
@@ -199,7 +199,7 @@ https://momoai.czvip.cn/products/codex
 | 方案 | 说明 | 链接 |
 |------|------|------|
 | **GPT 使用** | **打开 GPT 服务首页** | https://chatgpt-plus.top/list/#/home |
-| **Gemini 使用** | **打开 Gemini 服务首页** | https://geminiai.asia/list/#/home |
+| **Gemini 使用** | **打开 Gemini 服务首页** | https://gemini-ultra.top/list/#/home |
 | **国内官网入口** | **进入 Codex 国内站登录和配置** | https://momoai.asia/login |
 | **备用网址 1** | **主入口访问不稳定时使用备用入口登录** | https://codex.trygpt.asia/login |
 | **备用网址 2** | **主入口访问不稳定时使用备用入口登录** | https://codex.trygpt.asia |
